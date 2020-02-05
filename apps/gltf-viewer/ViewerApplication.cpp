@@ -185,5 +185,20 @@ bool ViewerApplication::loadGltfFile(tinygltf::Model &model) {
     tinygltf::TinyGLTF loader;
     std::string err;
     std::string warn;
-    return loader.LoadASCIIFromFile(&model, &err, &warn, m_gltfFilePath.string());
+    bool ret = loader.LoadASCIIFromFile(&model, &err, &warn, m_gltfFilePath.string());
+
+    if (!warn.empty()) {
+        std::cerr << warn << std::endl;
+    }
+
+    if (!err.empty()) {
+        std::cerr << err << std::endl;
+    }
+
+    if (!ret) {
+        std::cerr << "Failed to parse glTF file" << std::endl;
+        return false;
+    }
+
+    return true;
 }
