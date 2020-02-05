@@ -27,12 +27,13 @@ public:
       glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
     }
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
     glfwWindowHint(GLFW_SAMPLES, 4);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); //Added
 
     m_pWindow =
         glfwCreateWindow(int(width), int(height), title, nullptr, nullptr);
@@ -51,13 +52,14 @@ public:
       throw std::runtime_error("Unable to init OpenGL.\n");
     }
 
-    initGLDebugOutput();
+    //initGLDebugOutput(); //Only available for opengl > 4.3 (got 4.1 on macbook air R2015)
 
     // Setup ImGui
     ImGui::CreateContext();
     ImGui_ImplGlfw_InitForOpenGL(m_pWindow, true);
-    const char *glsl_version = "#version 130";
+    const char *glsl_version = "#version 330"; //may be changed according to your computer.
     ImGui_ImplOpenGL3_Init(glsl_version);
+
   }
 
   ~GLFWHandle()
