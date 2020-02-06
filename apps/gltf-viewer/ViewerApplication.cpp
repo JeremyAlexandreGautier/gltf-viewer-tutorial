@@ -53,13 +53,9 @@ int ViewerApplication::run() {
     }
 
     tinygltf::Model model;
-    // TODO Loading the glTF file
     loadGltfFile(model);
 
-    // TODO Creation of Buffer Objects
     const auto bufferObject = createBufferObjects(model);
-
-    // TODO Creation of Vertex Array Objects
     std::vector<VaoRange> meshIndexToVaoRange;
     const auto vertexArrayObject = createVertexArrayObjects(model, bufferObject, meshIndexToVaoRange);
 
@@ -83,7 +79,9 @@ int ViewerApplication::run() {
 
         // Draw the scene referenced by gltf file
         if (model.defaultScene >= 0) {
-            // TODO Draw all nodes
+            for(auto node : model.scenes[model.defaultScene].nodes){
+                drawNode(node, glm::mat4(1));
+            }
         }
     };
 
@@ -227,7 +225,7 @@ ViewerApplication::createVertexArrayObjects(const tinygltf::Model &model, const 
     const GLuint VERTEX_ATTRIB_TEXCOORD0_IDX = 2;
 
 
-    const std::vector<std::string> ATTRIB_NAME = {"POSITION", "NORMAL", "TEXCOORD_0"};
+    const std::vector<std::string> ATTRIB_NAMES = {"POSITION", "NORMAL", "TEXCOORD_0"};
     const std::unordered_map<std::string, GLuint> VERTEX_ATTRIBS = {
                                                             {"POSITION", 0},
                                                             {"NORMAL", 1},
@@ -249,7 +247,7 @@ ViewerApplication::createVertexArrayObjects(const tinygltf::Model &model, const 
             for(int i = 0; i < primitive.attributes.size(); i ++)
             {
                 // I'm opening a scope because I want to reuse the variable iterator in the code for NORMAL and TEXCOORD_0
-                const auto iterator = primitive.attributes.find(ATTRIB_NAME[i]);
+                const auto iterator = primitive.attributes.find(ATTRIB_NAMES[i]);
                 if (iterator != end(primitive.attributes)) { // If "POSITION" has been found in the map
                     // (*iterator).first is the key "POSITION", (*iterator).second is the value, ie. the index of the accessor for this attribute
                     const auto accessorIdx = (*iterator).second;
@@ -259,7 +257,7 @@ ViewerApplication::createVertexArrayObjects(const tinygltf::Model &model, const 
 
                     const auto bufferObject = model.buffers[bufferIdx];
 
-                    glEnableVertexAttribArray(VERTEX_ATTRIBS.at(ATTRIB_NAME[i]));
+                    glEnableVertexAttribArray(VERTEX_ATTRIBS.at(ATTRIB_NAMES[i]));
                     glBindBuffer(GL_ARRAY_BUFFER, bufferIdx);
 
                     const auto byteOffset = accessor.byteOffset + bufferView.byteOffset;
