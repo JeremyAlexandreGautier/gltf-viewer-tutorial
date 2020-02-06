@@ -6,30 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../third-party/args-6.2.2/args.hxx
-algorithm
--
-iterator
--
-exception
--
-functional
--
-sstream
--
-string
--
-tuple
--
-vector
--
-unordered_map
--
-unordered_set
--
-type_traits
--
-
 ../third-party/glad/include/KHR/khrplatform.h
 stdint.h
 -
@@ -2030,16 +2006,6 @@ utils/filesystem.hpp
 utils/shaders.hpp
 /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/utils/shaders.hpp
 tiny_gltf.h
--
-
-/Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/main.cpp
-ViewerApplication.hpp
-/Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/ViewerApplication.hpp
-utils/GLFWHandle.hpp
-/Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/utils/GLFWHandle.hpp
-utils/filesystem.hpp
-/Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/utils/filesystem.hpp
-args.hxx
 -
 
 /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/utils/GLFWHandle.hpp
