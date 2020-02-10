@@ -10,7 +10,7 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is AppleClang, found in "/Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/3.16.2/CompilerIdC/a.out"
+The C compiler identification is AppleClang, found in "/Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/3.16.3/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: /Library/Developer/CommandLineTools/usr/bin/c++ 
@@ -23,32 +23,32 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is AppleClang, found in "/Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/3.16.2/CompilerIdCXX/a.out"
+The CXX compiler identification is AppleClang, found in "/Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/3.16.3/CompilerIdCXX/a.out"
 
 Determining if the C compiler works passed with the following output:
 Change Dir: /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_ee33c/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_ee33c.dir/build.make CMakeFiles/cmTC_ee33c.dir/build
-Building C object CMakeFiles/cmTC_ee33c.dir/testCCompiler.c.o
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_ee33c.dir/testCCompiler.c.o   -c /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_ee33c
-/usr/local/Cellar/cmake/3.16.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ee33c.dir/link.txt --verbose=1
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_ee33c.dir/testCCompiler.c.o  -o cmTC_ee33c 
+Run Build Command(s):/usr/bin/make cmTC_3452b/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_3452b.dir/build.make CMakeFiles/cmTC_3452b.dir/build
+Building C object CMakeFiles/cmTC_3452b.dir/testCCompiler.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_3452b.dir/testCCompiler.c.o   -c /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_3452b
+/usr/local/Cellar/cmake/3.16.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3452b.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_3452b.dir/testCCompiler.c.o  -o cmTC_3452b 
 
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_fed48/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_fed48.dir/build.make CMakeFiles/cmTC_fed48.dir/build
-Building C object CMakeFiles/cmTC_fed48.dir/CMakeCCompilerABI.c.o
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -v -Wl,-v -o CMakeFiles/cmTC_fed48.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.16.2/share/cmake/Modules/CMakeCCompilerABI.c
+Run Build Command(s):/usr/bin/make cmTC_5258f/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_5258f.dir/build.make CMakeFiles/cmTC_5258f.dir/build
+Building C object CMakeFiles/cmTC_5258f.dir/CMakeCCompilerABI.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -v -Wl,-v -o CMakeFiles/cmTC_5258f.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.16.3/share/cmake/Modules/CMakeCCompilerABI.c
 Apple clang version 11.0.0 (clang-1100.0.33.12)
 Target: x86_64-apple-darwin19.0.0
 Thread model: posix
 InstalledDir: /Library/Developer/CommandLineTools/usr/bin
 clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
- "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx10.15.0 -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fno-strict-return -masm-verbose -munwind-tables -target-sdk-version=10.15 -target-cpu penryn -dwarf-column-info -debugger-tuning=lldb -ggnu-pubnames -target-linker-version 520 -v -coverage-notes-file /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_fed48.dir/CMakeCCompilerABI.c.gcno -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wno-framework-include-private-from-public -Wno-atimport-in-framework-header -Wno-extra-semi-stmt -Wno-quoted-include-in-framework-header -fdebug-compilation-dir /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fobjc-runtime=macosx-10.15.0 -fmax-type-align=16 -fdiagnostics-show-option -o CMakeFiles/cmTC_fed48.dir/CMakeCCompilerABI.c.o -x c /usr/local/Cellar/cmake/3.16.2/share/cmake/Modules/CMakeCCompilerABI.c
+ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx10.15.0 -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fno-strict-return -masm-verbose -munwind-tables -target-sdk-version=10.15 -target-cpu penryn -dwarf-column-info -debugger-tuning=lldb -ggnu-pubnames -target-linker-version 520 -v -coverage-notes-file /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_5258f.dir/CMakeCCompilerABI.c.gcno -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wno-framework-include-private-from-public -Wno-atimport-in-framework-header -Wno-extra-semi-stmt -Wno-quoted-include-in-framework-header -fdebug-compilation-dir /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fobjc-runtime=macosx-10.15.0 -fmax-type-align=16 -fdiagnostics-show-option -o CMakeFiles/cmTC_5258f.dir/CMakeCCompilerABI.c.o -x c /usr/local/Cellar/cmake/3.16.3/share/cmake/Modules/CMakeCCompilerABI.c
 clang -cc1 version 11.0.0 (clang-1100.0.33.12) default target x86_64-apple-darwin19.0.0
 ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/local/include"
 ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/Library/Frameworks"
@@ -59,14 +59,14 @@ ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX1
  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include
  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks (framework directory)
 End of search list.
-Linking C executable cmTC_fed48
-/usr/local/Cellar/cmake/3.16.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fed48.dir/link.txt --verbose=1
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_fed48.dir/CMakeCCompilerABI.c.o  -o cmTC_fed48 
+Linking C executable cmTC_5258f
+/usr/local/Cellar/cmake/3.16.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5258f.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_5258f.dir/CMakeCCompilerABI.c.o  -o cmTC_5258f 
 Apple clang version 11.0.0 (clang-1100.0.33.12)
 Target: x86_64-apple-darwin19.0.0
 Thread model: posix
 InstalledDir: /Library/Developer/CommandLineTools/usr/bin
- "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.15.0 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -o cmTC_fed48 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_fed48.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/lib/darwin/libclang_rt.osx.a
+ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.15.0 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -o cmTC_5258f -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_5258f.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/lib/darwin/libclang_rt.osx.a
 @(#)PROGRAM:ld  PROJECT:ld64-520
 BUILD 18:38:01 Oct 11 2019
 configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
@@ -94,15 +94,15 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/usr/bin/make cmTC_fed48/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_fed48.dir/build.make CMakeFiles/cmTC_fed48.dir/build]
-  ignore line: [Building C object CMakeFiles/cmTC_fed48.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -v -Wl -v -o CMakeFiles/cmTC_fed48.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.16.2/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [Run Build Command(s):/usr/bin/make cmTC_5258f/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_5258f.dir/build.make CMakeFiles/cmTC_5258f.dir/build]
+  ignore line: [Building C object CMakeFiles/cmTC_5258f.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -v -Wl -v -o CMakeFiles/cmTC_5258f.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.16.3/share/cmake/Modules/CMakeCCompilerABI.c]
   ignore line: [Apple clang version 11.0.0 (clang-1100.0.33.12)]
   ignore line: [Target: x86_64-apple-darwin19.0.0]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
   ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
-  ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx10.15.0 -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fno-strict-return -masm-verbose -munwind-tables -target-sdk-version=10.15 -target-cpu penryn -dwarf-column-info -debugger-tuning=lldb -ggnu-pubnames -target-linker-version 520 -v -coverage-notes-file /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_fed48.dir/CMakeCCompilerABI.c.gcno -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wno-framework-include-private-from-public -Wno-atimport-in-framework-header -Wno-extra-semi-stmt -Wno-quoted-include-in-framework-header -fdebug-compilation-dir /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fobjc-runtime=macosx-10.15.0 -fmax-type-align=16 -fdiagnostics-show-option -o CMakeFiles/cmTC_fed48.dir/CMakeCCompilerABI.c.o -x c /usr/local/Cellar/cmake/3.16.2/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx10.15.0 -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fno-strict-return -masm-verbose -munwind-tables -target-sdk-version=10.15 -target-cpu penryn -dwarf-column-info -debugger-tuning=lldb -ggnu-pubnames -target-linker-version 520 -v -coverage-notes-file /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_5258f.dir/CMakeCCompilerABI.c.gcno -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wno-framework-include-private-from-public -Wno-atimport-in-framework-header -Wno-extra-semi-stmt -Wno-quoted-include-in-framework-header -fdebug-compilation-dir /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fobjc-runtime=macosx-10.15.0 -fmax-type-align=16 -fdiagnostics-show-option -o CMakeFiles/cmTC_5258f.dir/CMakeCCompilerABI.c.o -x c /usr/local/Cellar/cmake/3.16.3/share/cmake/Modules/CMakeCCompilerABI.c]
   ignore line: [clang -cc1 version 11.0.0 (clang-1100.0.33.12) default target x86_64-apple-darwin19.0.0]
   ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/local/include"]
   ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/Library/Frameworks"]
@@ -113,14 +113,14 @@ Parsed C implicit link information from above output:
   ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include]
   ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks (framework directory)]
   ignore line: [End of search list.]
-  ignore line: [Linking C executable cmTC_fed48]
-  ignore line: [/usr/local/Cellar/cmake/3.16.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fed48.dir/link.txt --verbose=1]
-  ignore line: [/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_fed48.dir/CMakeCCompilerABI.c.o  -o cmTC_fed48 ]
+  ignore line: [Linking C executable cmTC_5258f]
+  ignore line: [/usr/local/Cellar/cmake/3.16.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5258f.dir/link.txt --verbose=1]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_5258f.dir/CMakeCCompilerABI.c.o  -o cmTC_5258f ]
   ignore line: [Apple clang version 11.0.0 (clang-1100.0.33.12)]
   ignore line: [Target: x86_64-apple-darwin19.0.0]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
-  link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.15.0 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -o cmTC_fed48 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_fed48.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/lib/darwin/libclang_rt.osx.a]
+  link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.15.0 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -o cmTC_5258f -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_5258f.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/lib/darwin/libclang_rt.osx.a]
     arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
     arg [-demangle] ==> ignore
     arg [-lto_library] ==> ignore, skip following value
@@ -133,11 +133,11 @@ Parsed C implicit link information from above output:
     arg [-syslibroot] ==> ignore
     arg [/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_fed48] ==> ignore
+    arg [cmTC_5258f] ==> ignore
     arg [-search_paths_first] ==> ignore
     arg [-headerpad_max_install_names] ==> ignore
     arg [-v] ==> ignore
-    arg [CMakeFiles/cmTC_fed48.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_5258f.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lSystem] ==> lib [System]
     arg [/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/lib/darwin/libclang_rt.osx.a]
   Library search paths: [;/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/lib]
@@ -154,27 +154,27 @@ Parsed C implicit link information from above output:
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_5582f/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_5582f.dir/build.make CMakeFiles/cmTC_5582f.dir/build
-Building CXX object CMakeFiles/cmTC_5582f.dir/testCXXCompiler.cxx.o
-/Library/Developer/CommandLineTools/usr/bin/c++    -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_5582f.dir/testCXXCompiler.cxx.o -c /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_5582f
-/usr/local/Cellar/cmake/3.16.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5582f.dir/link.txt --verbose=1
-/Library/Developer/CommandLineTools/usr/bin/c++    -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_5582f.dir/testCXXCompiler.cxx.o  -o cmTC_5582f 
+Run Build Command(s):/usr/bin/make cmTC_ccb9c/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_ccb9c.dir/build.make CMakeFiles/cmTC_ccb9c.dir/build
+Building CXX object CMakeFiles/cmTC_ccb9c.dir/testCXXCompiler.cxx.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_ccb9c.dir/testCXXCompiler.cxx.o -c /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_ccb9c
+/usr/local/Cellar/cmake/3.16.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ccb9c.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++    -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_ccb9c.dir/testCXXCompiler.cxx.o  -o cmTC_ccb9c 
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_b317d/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_b317d.dir/build.make CMakeFiles/cmTC_b317d.dir/build
-Building CXX object CMakeFiles/cmTC_b317d.dir/CMakeCXXCompilerABI.cpp.o
-/Library/Developer/CommandLineTools/usr/bin/c++    -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -v -Wl,-v -o CMakeFiles/cmTC_b317d.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/3.16.2/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Run Build Command(s):/usr/bin/make cmTC_528a7/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_528a7.dir/build.make CMakeFiles/cmTC_528a7.dir/build
+Building CXX object CMakeFiles/cmTC_528a7.dir/CMakeCXXCompilerABI.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/c++    -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -v -Wl,-v -o CMakeFiles/cmTC_528a7.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/3.16.3/share/cmake/Modules/CMakeCXXCompilerABI.cpp
 Apple clang version 11.0.0 (clang-1100.0.33.12)
 Target: x86_64-apple-darwin19.0.0
 Thread model: posix
 InstalledDir: /Library/Developer/CommandLineTools/usr/bin
 clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
- "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx10.15.0 -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fno-strict-return -masm-verbose -munwind-tables -target-sdk-version=10.15 -target-cpu penryn -dwarf-column-info -debugger-tuning=lldb -ggnu-pubnames -target-linker-version 520 -v -coverage-notes-file /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_b317d.dir/CMakeCXXCompilerABI.cpp.gcno -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1 -Wno-framework-include-private-from-public -Wno-atimport-in-framework-header -Wno-extra-semi-stmt -Wno-quoted-include-in-framework-header -fdeprecated-macro -fdebug-compilation-dir /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fobjc-runtime=macosx-10.15.0 -fcxx-exceptions -fexceptions -fmax-type-align=16 -fdiagnostics-show-option -o CMakeFiles/cmTC_b317d.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/Cellar/cmake/3.16.2/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx10.15.0 -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fno-strict-return -masm-verbose -munwind-tables -target-sdk-version=10.15 -target-cpu penryn -dwarf-column-info -debugger-tuning=lldb -ggnu-pubnames -target-linker-version 520 -v -coverage-notes-file /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_528a7.dir/CMakeCXXCompilerABI.cpp.gcno -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1 -Wno-framework-include-private-from-public -Wno-atimport-in-framework-header -Wno-extra-semi-stmt -Wno-quoted-include-in-framework-header -fdeprecated-macro -fdebug-compilation-dir /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fobjc-runtime=macosx-10.15.0 -fcxx-exceptions -fexceptions -fmax-type-align=16 -fdiagnostics-show-option -o CMakeFiles/cmTC_528a7.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/Cellar/cmake/3.16.3/share/cmake/Modules/CMakeCXXCompilerABI.cpp
 clang -cc1 version 11.0.0 (clang-1100.0.33.12) default target x86_64-apple-darwin19.0.0
 ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/c++/v1"
 ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/local/include"
@@ -187,14 +187,14 @@ ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX1
  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include
  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks (framework directory)
 End of search list.
-Linking CXX executable cmTC_b317d
-/usr/local/Cellar/cmake/3.16.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b317d.dir/link.txt --verbose=1
-/Library/Developer/CommandLineTools/usr/bin/c++    -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_b317d.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_b317d 
+Linking CXX executable cmTC_528a7
+/usr/local/Cellar/cmake/3.16.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_528a7.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/c++    -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_528a7.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_528a7 
 Apple clang version 11.0.0 (clang-1100.0.33.12)
 Target: x86_64-apple-darwin19.0.0
 Thread model: posix
 InstalledDir: /Library/Developer/CommandLineTools/usr/bin
- "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.15.0 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -o cmTC_b317d -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_b317d.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/lib/darwin/libclang_rt.osx.a
+ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.15.0 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -o cmTC_528a7 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_528a7.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/lib/darwin/libclang_rt.osx.a
 @(#)PROGRAM:ld  PROJECT:ld64-520
 BUILD 18:38:01 Oct 11 2019
 configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
@@ -224,15 +224,15 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/usr/bin/make cmTC_b317d/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_b317d.dir/build.make CMakeFiles/cmTC_b317d.dir/build]
-  ignore line: [Building CXX object CMakeFiles/cmTC_b317d.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/Library/Developer/CommandLineTools/usr/bin/c++    -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -v -Wl -v -o CMakeFiles/cmTC_b317d.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/3.16.2/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Run Build Command(s):/usr/bin/make cmTC_528a7/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_528a7.dir/build.make CMakeFiles/cmTC_528a7.dir/build]
+  ignore line: [Building CXX object CMakeFiles/cmTC_528a7.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/c++    -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -v -Wl -v -o CMakeFiles/cmTC_528a7.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/3.16.3/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
   ignore line: [Apple clang version 11.0.0 (clang-1100.0.33.12)]
   ignore line: [Target: x86_64-apple-darwin19.0.0]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
   ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
-  ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx10.15.0 -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fno-strict-return -masm-verbose -munwind-tables -target-sdk-version=10.15 -target-cpu penryn -dwarf-column-info -debugger-tuning=lldb -ggnu-pubnames -target-linker-version 520 -v -coverage-notes-file /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_b317d.dir/CMakeCXXCompilerABI.cpp.gcno -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1 -Wno-framework-include-private-from-public -Wno-atimport-in-framework-header -Wno-extra-semi-stmt -Wno-quoted-include-in-framework-header -fdeprecated-macro -fdebug-compilation-dir /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fobjc-runtime=macosx-10.15.0 -fcxx-exceptions -fexceptions -fmax-type-align=16 -fdiagnostics-show-option -o CMakeFiles/cmTC_b317d.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/Cellar/cmake/3.16.2/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx10.15.0 -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -emit-obj -mrelax-all -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mthread-model posix -mdisable-fp-elim -fno-strict-return -masm-verbose -munwind-tables -target-sdk-version=10.15 -target-cpu penryn -dwarf-column-info -debugger-tuning=lldb -ggnu-pubnames -target-linker-version 520 -v -coverage-notes-file /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_528a7.dir/CMakeCXXCompilerABI.cpp.gcno -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1 -Wno-framework-include-private-from-public -Wno-atimport-in-framework-header -Wno-extra-semi-stmt -Wno-quoted-include-in-framework-header -fdeprecated-macro -fdebug-compilation-dir /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp -ferror-limit 19 -fmessage-length 0 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fobjc-runtime=macosx-10.15.0 -fcxx-exceptions -fexceptions -fmax-type-align=16 -fdiagnostics-show-option -o CMakeFiles/cmTC_528a7.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/Cellar/cmake/3.16.3/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
   ignore line: [clang -cc1 version 11.0.0 (clang-1100.0.33.12) default target x86_64-apple-darwin19.0.0]
   ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/c++/v1"]
   ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/local/include"]
@@ -245,14 +245,14 @@ Parsed CXX implicit link information from above output:
   ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include]
   ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks (framework directory)]
   ignore line: [End of search list.]
-  ignore line: [Linking CXX executable cmTC_b317d]
-  ignore line: [/usr/local/Cellar/cmake/3.16.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b317d.dir/link.txt --verbose=1]
-  ignore line: [/Library/Developer/CommandLineTools/usr/bin/c++    -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_b317d.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_b317d ]
+  ignore line: [Linking CXX executable cmTC_528a7]
+  ignore line: [/usr/local/Cellar/cmake/3.16.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_528a7.dir/link.txt --verbose=1]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/c++    -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_528a7.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_528a7 ]
   ignore line: [Apple clang version 11.0.0 (clang-1100.0.33.12)]
   ignore line: [Target: x86_64-apple-darwin19.0.0]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
-  link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.15.0 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -o cmTC_b317d -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_b317d.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/lib/darwin/libclang_rt.osx.a]
+  link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.15.0 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -o cmTC_528a7 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_528a7.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/lib/darwin/libclang_rt.osx.a]
     arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
     arg [-demangle] ==> ignore
     arg [-lto_library] ==> ignore, skip following value
@@ -265,11 +265,11 @@ Parsed CXX implicit link information from above output:
     arg [-syslibroot] ==> ignore
     arg [/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_b317d] ==> ignore
+    arg [cmTC_528a7] ==> ignore
     arg [-search_paths_first] ==> ignore
     arg [-headerpad_max_install_names] ==> ignore
     arg [-v] ==> ignore
-    arg [CMakeFiles/cmTC_b317d.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_528a7.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lc++] ==> lib [c++]
     arg [-lSystem] ==> lib [System]
     arg [/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/lib/darwin/libclang_rt.osx.a]
@@ -287,24 +287,24 @@ Parsed CXX implicit link information from above output:
 Determining if the include file pthread.h exists passed with the following output:
 Change Dir: /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_9a91e/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_9a91e.dir/build.make CMakeFiles/cmTC_9a91e.dir/build
-Building C object CMakeFiles/cmTC_9a91e.dir/CheckIncludeFile.c.o
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_9a91e.dir/CheckIncludeFile.c.o   -c /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/CheckIncludeFile.c
-Linking C executable cmTC_9a91e
-/usr/local/Cellar/cmake/3.16.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9a91e.dir/link.txt --verbose=1
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_9a91e.dir/CheckIncludeFile.c.o  -o cmTC_9a91e 
+Run Build Command(s):/usr/bin/make cmTC_0f287/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_0f287.dir/build.make CMakeFiles/cmTC_0f287.dir/build
+Building C object CMakeFiles/cmTC_0f287.dir/CheckIncludeFile.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_0f287.dir/CheckIncludeFile.c.o   -c /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_0f287
+/usr/local/Cellar/cmake/3.16.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0f287.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_0f287.dir/CheckIncludeFile.c.o  -o cmTC_0f287 
 
 
 
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD succeeded with the following output:
 Change Dir: /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_6baae/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_6baae.dir/build.make CMakeFiles/cmTC_6baae.dir/build
-Building C object CMakeFiles/cmTC_6baae.dir/src.c.o
-/Library/Developer/CommandLineTools/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_6baae.dir/src.c.o   -c /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_6baae
-/usr/local/Cellar/cmake/3.16.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6baae.dir/link.txt --verbose=1
-/Library/Developer/CommandLineTools/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_6baae.dir/src.c.o  -o cmTC_6baae 
+Run Build Command(s):/usr/bin/make cmTC_671b4/fast && /Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_671b4.dir/build.make CMakeFiles/cmTC_671b4.dir/build
+Building C object CMakeFiles/cmTC_671b4.dir/src.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_671b4.dir/src.c.o   -c /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_671b4
+/usr/local/Cellar/cmake/3.16.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_671b4.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_671b4.dir/src.c.o  -o cmTC_671b4 
 
 
 Source file was:

@@ -238,6 +238,7 @@ CMakeFiles/gltf-viewer.dir/apps/gltf-viewer/ViewerApplication.cpp.o
  /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/utils/filesystem.hpp
  /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/utils/gl_debug_output.hpp
  /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/utils/glfw.hpp
+ /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/utils/gltf.hpp
  /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/utils/shaders.hpp
 CMakeFiles/gltf-viewer.dir/apps/gltf-viewer/main.cpp.o
  ../third-party/args-6.2.2/args.hxx

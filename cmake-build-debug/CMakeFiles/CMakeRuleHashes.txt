@@ -1,5 +1,0 @@
-# Hashes of file build rules.
-101a831068246b8791209fb315f2295d bin/shaders/gltf-viewer/forward.vs.glsl
-cbda45535f9542e901579ab499bcf59c bin/shaders/gltf-viewer/magenta.fs.glsl
-f5a9dfc413d42b44c5335019134e7e04 bin/shaders/gltf-viewer/normals.fs.glsl
-33d573c1bdb9a213f4d51a6a876e9e4c third-party/glfw-3.3.1/CMakeFiles/uninstall

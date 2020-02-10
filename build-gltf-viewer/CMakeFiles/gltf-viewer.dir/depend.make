@@ -237,6 +237,7 @@ CMakeFiles/gltf-viewer.dir/apps/gltf-viewer/ViewerApplication.cpp.o: ../apps/glt
 CMakeFiles/gltf-viewer.dir/apps/gltf-viewer/ViewerApplication.cpp.o: ../apps/gltf-viewer/utils/filesystem.hpp
 CMakeFiles/gltf-viewer.dir/apps/gltf-viewer/ViewerApplication.cpp.o: ../apps/gltf-viewer/utils/gl_debug_output.hpp
 CMakeFiles/gltf-viewer.dir/apps/gltf-viewer/ViewerApplication.cpp.o: ../apps/gltf-viewer/utils/glfw.hpp
+CMakeFiles/gltf-viewer.dir/apps/gltf-viewer/ViewerApplication.cpp.o: ../apps/gltf-viewer/utils/gltf.hpp
 CMakeFiles/gltf-viewer.dir/apps/gltf-viewer/ViewerApplication.cpp.o: ../apps/gltf-viewer/utils/shaders.hpp
 
 CMakeFiles/gltf-viewer.dir/apps/gltf-viewer/main.cpp.o: ../third-party/args-6.2.2/args.hxx

@@ -1993,6 +1993,8 @@ glm/gtx/io.hpp
 -
 utils/cameras.hpp
 /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/utils/cameras.hpp
+utils/gltf.hpp
+/Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/utils/gltf.hpp
 stb_image_write.h
 -
 
@@ -2048,6 +2050,12 @@ experimental/filesystem
 glad/glad.h
 -
 GLFW/glfw3.h
+-
+
+/Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/utils/gltf.hpp
+glm/glm.hpp
+-
+tiny_gltf.h
 -
 
 /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/utils/shaders.hpp
