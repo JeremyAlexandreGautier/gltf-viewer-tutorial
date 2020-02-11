@@ -1,4 +1,4 @@
-# Install script for directory: /Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git
+# Install script for directory: /home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,28 +27,34 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
-# Is this installation the result of a crosscompile?
-if(NOT DEFINED CMAKE_CROSSCOMPILING)
-  set(CMAKE_CROSSCOMPILING "FALSE")
+# Install shared libraries without execute permission?
+if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
+  set(CMAKE_INSTALL_SO_NO_EXE "1")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE EXECUTABLE FILES "/Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/bin/gltf-viewer")
+if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./gltf-viewer" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./gltf-viewer")
+    file(RPATH_CHECK
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./gltf-viewer"
+         RPATH "")
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE EXECUTABLE FILES "/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/bin/gltf-viewer")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./gltf-viewer" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./gltf-viewer")
     if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/Library/Developer/CommandLineTools/usr/bin/strip" -u -r "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./gltf-viewer")
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./gltf-viewer")
     endif()
   endif()
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/shaders/gltf-viewer" TYPE DIRECTORY FILES "/Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/apps/gltf-viewer/shaders/" FILES_MATCHING REGEX "/[^/]*\\.glsl$")
+if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/shaders/gltf-viewer" TYPE DIRECTORY FILES "/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/apps/gltf-viewer/shaders/" FILES_MATCHING REGEX "/[^/]*\\.glsl$")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/third-party/glfw-3.3.1/cmake_install.cmake")
+  include("/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/cmake_install.cmake")
 
 endif()
 
@@ -60,5 +66,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/GautierJeremy/M2/Synthese/gltf-viewer/gltf-viewer-tutorial-git/build-gltf-viewer/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
