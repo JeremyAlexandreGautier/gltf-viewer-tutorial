@@ -13,6 +13,7 @@
 
 #include <stb_image_write.h>
 
+//./bin/gltf-viewer viewer ../Sponza/glTF/Sponza.gltf --lookat "-5.26056,6.59932,0.85661,-4.40144,6.23486,0.497347,0.342113,0.931131,-0.126476"
 
 void keyCallback(
         GLFWwindow *window, int key, int scancode, int action, int mods) {
@@ -79,7 +80,7 @@ int ViewerApplication::run() {
                 [&](int nodeIdx, const glm::mat4 &parentMatrix) {
                     const auto &node = model.nodes[nodeIdx];
                     glm::mat4 modelMatrix = getLocalToWorldMatrix(node, parentMatrix);
-                    std::cout << "step in" << std::endl;
+           
                     if (node.mesh >= 0) {
                         glm::mat4 modelViewMatrix = viewMatrix * modelMatrix;
                         glm::mat4 modelViewProjectionMatrix = projMatrix * modelViewMatrix;
@@ -90,30 +91,30 @@ int ViewerApplication::run() {
                         glUniformMatrix4fv(normalMatrixLocation, 1, GL_FALSE, glm::value_ptr(normalMatrix));
                         const auto &mesh = model.meshes[node.mesh];
                         const auto &vaoRange = meshToVertexArrays[node.mesh];
-                        std::cout << "about to draw" << std::endl;
+                   
                         for (size_t primitiveIdx = 0; primitiveIdx < mesh.primitives.size(); primitiveIdx++) {
                             const auto vaoP = vertexArrayObjects[vaoRange.begin + primitiveIdx];
                             const auto primitive = mesh.primitives[primitiveIdx];
                             glBindVertexArray(vaoP);
 
                             if (primitive.indices >= 0) {
-                                std::cout << "about to draw elements" << std::endl;
+                  
                                 const auto &accessor = model.accessors[primitive.indices];
                                 const auto &bufferView = model.bufferViews[accessor.bufferView];
                                 const auto byteOffset = accessor.byteOffset + bufferView.byteOffset;
-                                std::cout << "positive here it doesnt work" << std::endl;
+                             
                                 glDrawElements(primitive.mode, GLsizei(accessor.count), accessor.componentType,
                                                (const GLvoid *) byteOffset);
-                                std::cout << "draw elements done" << std::endl;
+                            
                             } else {
-                                std::cout << "about to draw arrays" << std::endl;
+                       
                                 const auto accessorIdx = (*begin(primitive.attributes)).second;
                                 const auto &accessor = model.accessors[accessorIdx];
                                 glDrawArrays(primitive.mode, 0, GLsizei(accessor.count));
-                                std::cout << "draw arrays done " << std::endl;
+                      
                             }
                         }
-                        std::cout << "draw done" << std::endl;
+               
                     }
                     for (const auto child : node.children) {
                         drawNode(child, modelMatrix);
@@ -255,8 +256,8 @@ std::vector<GLuint> ViewerApplication::createBufferObjects(const tinygltf::Model
 
     for (size_t i = 0; i < model.buffers.size(); i++) {
         glBindBuffer(GL_ARRAY_BUFFER, bufferObjects[i]);
-        //glBufferStorage(GL_ARRAY_BUFFER, model.buffers[i].data.size(), model.buffers[i].data.data(), 0); //Not available with opengl 4.1
-        glBufferData(GL_ARRAY_BUFFER, model.buffers[i].data.size(), model.buffers[i].data.data(), 0);
+        glBufferStorage(GL_ARRAY_BUFFER, model.buffers[i].data.size(), model.buffers[i].data.data(), 0); //Not available with opengl 4.1
+        //glBufferData(GL_ARRAY_BUFFER, model.buffers[i].data.size(), model.buffers[i].data.data(), 0);
     }
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
