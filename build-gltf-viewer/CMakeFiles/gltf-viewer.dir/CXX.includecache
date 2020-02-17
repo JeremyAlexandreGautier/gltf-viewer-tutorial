@@ -2139,6 +2139,8 @@ utils/cameras.hpp
 /home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/apps/gltf-viewer/utils/cameras.hpp
 utils/gltf.hpp
 /home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/apps/gltf-viewer/utils/gltf.hpp
+utils/images.hpp
+/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/apps/gltf-viewer/utils/images.hpp
 stb_image_write.h
 -
 
