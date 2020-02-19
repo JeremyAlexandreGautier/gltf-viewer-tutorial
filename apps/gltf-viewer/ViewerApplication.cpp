@@ -10,6 +10,7 @@
 
 #include "utils/cameras.hpp"
 #include "utils/gltf.hpp"
+#include "utils/images.hpp"
 
 #include <stb_image_write.h>
 
@@ -35,9 +36,30 @@ int ViewerApplication::run() {
     const auto normalMatrixLocation =
             glGetUniformLocation(glslProgram.glId(), "uNormalMatrix");
 
+
+
+    tinygltf::Model model;
+    if (!loadGltfFile(model)) {
+        return -1;
+    }
+
+    const auto bufferObject = createBufferObjects(model);
+    std::vector<VaoRange> meshToVertexArrays;
+    const auto vertexArrayObjects = createVertexArrayObjects(model, bufferObject, meshToVertexArrays);
+
     // Build projection matrix
-    auto maxDistance = 500.f; // TODO use scene bounds instead to compute this
-    maxDistance = maxDistance > 0.f ? maxDistance : 100.f;
+    //auto maxDistance = 500.f; // TODO use scene bounds instead to compute this
+    //maxDistance = maxDistance > 0.f ? maxDistance : 100.f;
+
+    glm::vec3 bboxMin;
+    glm::vec3 bboxMax;
+    computeSceneBounds(model,bboxMin, bboxMax);
+    glm::vec3 diagonal_vec = bboxMax - bboxMin;
+    //Why is diagonal as the same position of bboxMax ?
+
+
+    const auto maxDistance = glm::length(diagonal_vec);
+
     const auto projMatrix =
             glm::perspective(70.f, float(m_nWindowWidth) / m_nWindowHeight,
                              0.001f * maxDistance, 1.5f * maxDistance);
@@ -50,18 +72,13 @@ int ViewerApplication::run() {
         cameraController.setCamera(m_userCamera);
     } else {
         // TODO Use scene bounds to compute a better default camera
-        cameraController.setCamera(
-                Camera{glm::vec3(0, 0, 0), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0)});
+        //cameraController.setCamera(Camera{glm::vec3(0, 0, 0), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0)});
+        const auto center_scene = (bboxMax + bboxMin) * 0.5f;
+        const auto up = glm::vec3(0,1,0);
+        const auto eye = diagonal_vec;
+        cameraController.setCamera(Camera(eye, center_scene, up));
     }
 
-    tinygltf::Model model;
-    if (!loadGltfFile(model)) {
-        return -1;
-    }
-
-    const auto bufferObject = createBufferObjects(model);
-    std::vector<VaoRange> meshToVertexArrays;
-    const auto vertexArrayObjects = createVertexArrayObjects(model, bufferObject, meshToVertexArrays);
 
     // Setup OpenGL state for rendering
     glEnable(GL_DEPTH_TEST);
@@ -130,6 +147,14 @@ int ViewerApplication::run() {
     };
 
 
+    if(!m_OutputPath.empty()){
+        std::vector<unsigned char> pixels(m_nWindowWidth* m_nWindowHeight * 3);
+        renderToImage(m_nWindowWidth, m_nWindowHeight, 3, pixels.data(), [&](){drawScene(cameraController.getCamera());});
+        flipImageYAxis(m_nWindowWidth, m_nWindowHeight, 3, pixels.data());
+        const auto strPath = m_OutputPath.string();
+        stbi_write_png(strPath.c_str(), m_nWindowWidth, m_nWindowHeight, 3, pixels.data(), 0);
+        return 0;
+    }
 
     // Loop until the user closes the window
     for (auto iterationCount = 0u; !m_GLFWHandle.shouldClose();
@@ -149,7 +174,7 @@ int ViewerApplication::run() {
             if (ImGui::CollapsingHeader("Camera", ImGuiTreeNodeFlags_DefaultOpen)) {
                 ImGui::Text("eye: %.3f %.3f %.3f", camera.eye().x, camera.eye().y,
                             camera.eye().z);
-                ImGui::Text("center: %.3f %.3f %.3f", camera.center().x,
+                ImGui::Text("diagonal_vec: %.3f %.3f %.3f", camera.center().x,
                             camera.center().y, camera.center().z);
                 ImGui::Text(
                         "up: %.3f %.3f %.3f", camera.up().x, camera.up().y, camera.up().z);
