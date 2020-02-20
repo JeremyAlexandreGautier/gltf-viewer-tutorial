@@ -51,8 +51,6 @@ int ViewerApplication::run() {
     glm::vec3 bboxMax;
     computeSceneBounds(model,bboxMin, bboxMax);
     glm::vec3 diagonal_vec = bboxMax - bboxMin;
-    //Why is diagonal as the same position of bboxMax ?
-
 
 
     const auto maxDistance = glm::distance(bboxMin, bboxMax);
@@ -64,14 +62,17 @@ int ViewerApplication::run() {
     // TODO Implement a new CameraController model and use it instead. Propose the
     // choice from the GUI
 
-    FirstPersonCameraController cameraController{
-            m_GLFWHandle.window(), 10.f * maxDistance};
+    /*FirstPersonCameraController cameraController{
+            m_GLFWHandle.window(), 10.f * maxDistance};*/
+    TrackballCameraController cameraController{m_GLFWHandle.window(), 10.f * maxDistance};
+
     if (m_hasUserCamera) {
         cameraController.setCamera(m_userCamera);
     } else {
         //cameraController.setCamera(Camera{glm::vec3(0, 0, 0), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0)});
         const auto center_scene = (bboxMax + bboxMin) * 0.5f;
         const auto up = glm::vec3(0,1,0);
+        //const auto eye = (bboxMax.z > 0 ) ? bboxMax : center_scene + 2.f * glm::cross(bboxMax, up);
         const auto eye = (diagonal_vec.z > 0 ) ? diagonal_vec : center_scene + 2.f * glm::cross(diagonal_vec, up);
 
         cameraController.setCamera(Camera(eye, center_scene, up));
