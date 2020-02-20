@@ -45,3 +45,5 @@ third-party/*
 */build-gltf-viewer/*
 */cmake-build-debug/*
 
+#vscode 
+*/.vscode/*
