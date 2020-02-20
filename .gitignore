@@ -1,4 +1,9 @@
 *.imgui.ini
+
+# JetBrain's Clion caches and temps files
+.idea/
+cmake-build-debug/
+
 # Prerequisites
 *.d
 
@@ -32,9 +37,6 @@
 *.out
 *.app
 
-#Intellij locals
-*.idea/*
-
 #third-party
 third-party/*
 
@@ -43,7 +45,6 @@ third-party/*
 
 #build
 */build-gltf-viewer/*
-*/cmake-build-debug/*
 
-#vscode 
+#vscode
 */.vscode/*
