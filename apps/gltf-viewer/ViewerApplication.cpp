@@ -47,10 +47,6 @@ int ViewerApplication::run() {
     std::vector<VaoRange> meshToVertexArrays;
     const auto vertexArrayObjects = createVertexArrayObjects(model, bufferObject, meshToVertexArrays);
 
-    // Build projection matrix
-    //auto maxDistance = 500.f; // TODO use scene bounds instead to compute this
-    //maxDistance = maxDistance > 0.f ? maxDistance : 100.f;
-
     glm::vec3 bboxMin;
     glm::vec3 bboxMax;
     computeSceneBounds(model,bboxMin, bboxMax);
@@ -58,7 +54,8 @@ int ViewerApplication::run() {
     //Why is diagonal as the same position of bboxMax ?
 
 
-    const auto maxDistance = glm::length(diagonal_vec);
+
+    const auto maxDistance = glm::distance(bboxMin, bboxMax);
 
     const auto projMatrix =
             glm::perspective(70.f, float(m_nWindowWidth) / m_nWindowHeight,
@@ -66,16 +63,17 @@ int ViewerApplication::run() {
 
     // TODO Implement a new CameraController model and use it instead. Propose the
     // choice from the GUI
+
     FirstPersonCameraController cameraController{
-            m_GLFWHandle.window(), 0.5f * maxDistance};
+            m_GLFWHandle.window(), 10.f * maxDistance};
     if (m_hasUserCamera) {
         cameraController.setCamera(m_userCamera);
     } else {
-        // TODO Use scene bounds to compute a better default camera
         //cameraController.setCamera(Camera{glm::vec3(0, 0, 0), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0)});
         const auto center_scene = (bboxMax + bboxMin) * 0.5f;
         const auto up = glm::vec3(0,1,0);
-        const auto eye = diagonal_vec;
+        const auto eye = (diagonal_vec.z > 0 ) ? diagonal_vec : center_scene + 2.f * glm::cross(diagonal_vec, up);
+
         cameraController.setCamera(Camera(eye, center_scene, up));
     }
 
@@ -314,8 +312,8 @@ ViewerApplication::createVertexArrayObjects(const tinygltf::Model &model, const 
 
         glGenVertexArrays(vaoRange.count, &vertexArrayObjects[vaoRange.begin]);
 
-
-        for (size_t primitiveIdx = 0; primitiveIdx < mesh.primitives.size(); primitiveIdx++) {
+        const auto primitiveSize = mesh.primitives.size();
+        for (size_t primitiveIdx = 0; primitiveIdx < primitiveSize; primitiveIdx++) {
             auto primitive = mesh.primitives[primitiveIdx];
             glBindVertexArray(vertexArrayObjects[vaoRange.begin + primitiveIdx]);
             /* _____________________________________________________________________________ */
