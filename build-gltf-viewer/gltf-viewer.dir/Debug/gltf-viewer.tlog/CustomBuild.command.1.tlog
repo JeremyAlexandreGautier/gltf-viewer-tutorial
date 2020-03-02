@@ -1,0 +1,40 @@
+^C:\USERS\JEREM\PROJECT\SYNTHESE\GLTF-VIEWER-TUTORIAL\APPS\GLTF-VIEWER\SHADERS\FORWARD.VS.GLSL
+setlocal
+C:\Users\Jerem\Project\cmake-3.17.0-rc1-win64-x64\bin\cmake.exe -E copy C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/apps/gltf-viewer/shaders/forward.vs.glsl C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/bin/Debug/shaders/gltf-viewer/forward.vs.glsl
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\JEREM\PROJECT\SYNTHESE\GLTF-VIEWER-TUTORIAL\APPS\GLTF-VIEWER\SHADERS\MAGENTA.FS.GLSL
+setlocal
+C:\Users\Jerem\Project\cmake-3.17.0-rc1-win64-x64\bin\cmake.exe -E copy C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/apps/gltf-viewer/shaders/magenta.fs.glsl C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/bin/Debug/shaders/gltf-viewer/magenta.fs.glsl
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\JEREM\PROJECT\SYNTHESE\GLTF-VIEWER-TUTORIAL\APPS\GLTF-VIEWER\SHADERS\NORMALS.FS.GLSL
+setlocal
+C:\Users\Jerem\Project\cmake-3.17.0-rc1-win64-x64\bin\cmake.exe -E copy C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/apps/gltf-viewer/shaders/normals.fs.glsl C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/bin/Debug/shaders/gltf-viewer/normals.fs.glsl
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\JEREM\PROJECT\SYNTHESE\GLTF-VIEWER-TUTORIAL\CMAKELISTS.TXT
+setlocal
+C:\Users\Jerem\Project\cmake-3.17.0-rc1-win64-x64\bin\cmake.exe -SC:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial -BC:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer --check-stamp-file C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

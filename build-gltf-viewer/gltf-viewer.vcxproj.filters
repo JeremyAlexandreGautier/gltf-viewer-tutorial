@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\ViewerApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\tiny_gltf_impl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\FirstPersonCameraController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\TrackballCameraController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\cameras.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\gl_debug_output.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\gltf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\images.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\third-party\imgui-1.74\imgui.cpp">
+      <Filter>third-party</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\third-party\imgui-1.74\imgui_demo.cpp">
+      <Filter>third-party</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\third-party\imgui-1.74\imgui_draw.cpp">
+      <Filter>third-party</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\third-party\imgui-1.74\imgui_widgets.cpp">
+      <Filter>third-party</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\third-party\imgui-1.74\examples\imgui_impl_opengl3.cpp">
+      <Filter>third-party</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\third-party\imgui-1.74\examples\imgui_impl_glfw.cpp">
+      <Filter>third-party</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\third-party\glad\src\glad.c">
+      <Filter>third-party</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\ViewerApplication.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\CameraController.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\FirstPersonCameraController.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\GLFWHandle.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\TrackballCameraController.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\cameras.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\filesystem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\gl_debug_output.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\glfw.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\gltf.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\images.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\utils\shaders.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\shaders\forward.vs.glsl" />
+    <CustomBuild Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\shaders\magenta.fs.glsl" />
+    <CustomBuild Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\apps\gltf-viewer\shaders\normals.fs.glsl" />
+    <CustomBuild Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{A3F46F1E-15B5-3F23-BEC1-F9A83A3F4B4A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{D79D8995-9A1C-384D-9789-318FAB5BA156}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third-party">
+      <UniqueIdentifier>{0FD5F90D-2C40-3808-8678-CBCE3BEEA0F5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

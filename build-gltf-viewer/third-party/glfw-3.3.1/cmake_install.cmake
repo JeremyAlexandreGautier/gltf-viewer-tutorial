@@ -1,8 +1,8 @@
-# Install script for directory: /home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/third-party/glfw-3.3.1
+# Install script for directory: C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/third-party/glfw-3.3.1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/usr/local")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/gltf-viewer-tutorial")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -12,7 +12,7 @@ if(NOT DEFINED CMAKE_INSTALL_CONFIG_NAME)
     string(REGEX REPLACE "^[^A-Za-z0-9_]+" ""
            CMAKE_INSTALL_CONFIG_NAME "${BUILD_TYPE}")
   else()
-    set(CMAKE_INSTALL_CONFIG_NAME "")
+    set(CMAKE_INSTALL_CONFIG_NAME "Release")
   endif()
   message(STATUS "Install configuration: \"${CMAKE_INSTALL_CONFIG_NAME}\"")
 endif()
@@ -27,27 +27,27 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
-# Install shared libraries without execute permission?
-if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "1")
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/third-party/glfw-3.3.1/include/GLFW" FILES_MATCHING REGEX "/glfw3\\.h$" REGEX "/glfw3native\\.h$")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/third-party/glfw-3.3.1/include/GLFW" FILES_MATCHING REGEX "/glfw3\\.h$" REGEX "/glfw3native\\.h$")
 endif()
 
-if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/glfw3" TYPE FILE FILES
-    "/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/src/glfw3Config.cmake"
-    "/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/src/glfw3ConfigVersion.cmake"
+    "C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/src/glfw3Config.cmake"
+    "C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/src/glfw3ConfigVersion.cmake"
     )
 endif()
 
-if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/glfw3/glfw3Targets.cmake")
     file(DIFFERENT EXPORT_FILE_CHANGED FILES
          "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/glfw3/glfw3Targets.cmake"
-         "/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/CMakeFiles/Export/lib/cmake/glfw3/glfw3Targets.cmake")
+         "C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/CMakeFiles/Export/lib/cmake/glfw3/glfw3Targets.cmake")
     if(EXPORT_FILE_CHANGED)
       file(GLOB OLD_CONFIG_FILES "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/glfw3/glfw3Targets-*.cmake")
       if(OLD_CONFIG_FILES)
@@ -56,19 +56,28 @@ if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMP
       endif()
     endif()
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/glfw3" TYPE FILE FILES "/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/CMakeFiles/Export/lib/cmake/glfw3/glfw3Targets.cmake")
-  if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^()$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/glfw3" TYPE FILE FILES "/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/CMakeFiles/Export/lib/cmake/glfw3/glfw3Targets-noconfig.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/glfw3" TYPE FILE FILES "C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/CMakeFiles/Export/lib/cmake/glfw3/glfw3Targets.cmake")
+  if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/glfw3" TYPE FILE FILES "C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/CMakeFiles/Export/lib/cmake/glfw3/glfw3Targets-debug.cmake")
+  endif()
+  if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Mm][Ii][Nn][Ss][Ii][Zz][Ee][Rr][Ee][Ll])$")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/glfw3" TYPE FILE FILES "C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/CMakeFiles/Export/lib/cmake/glfw3/glfw3Targets-minsizerel.cmake")
+  endif()
+  if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Rr][Ee][Ll][Ww][Ii][Tt][Hh][Dd][Ee][Bb][Ii][Nn][Ff][Oo])$")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/glfw3" TYPE FILE FILES "C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/CMakeFiles/Export/lib/cmake/glfw3/glfw3Targets-relwithdebinfo.cmake")
+  endif()
+  if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/glfw3" TYPE FILE FILES "C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/CMakeFiles/Export/lib/cmake/glfw3/glfw3Targets-release.cmake")
   endif()
 endif()
 
-if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/src/glfw3.pc")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/src/glfw3.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/src/cmake_install.cmake")
+  include("C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/src/cmake_install.cmake")
 
 endif()
 
