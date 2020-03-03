@@ -26,10 +26,12 @@ void keyCallback(
 }
 
 int ViewerApplication::run() {
+
     // Loader shaders
     const auto glslProgram =
             compileProgram({m_ShadersRootPath / m_AppName / m_vertexShader,
                             m_ShadersRootPath / m_AppName / m_fragmentShader});
+
 
     const auto modelViewProjMatrixLocation =
             glGetUniformLocation(glslProgram.glId(), "uModelViewProjMatrix");
@@ -38,8 +40,13 @@ int ViewerApplication::run() {
     const auto normalMatrixLocation =
             glGetUniformLocation(glslProgram.glId(), "uNormalMatrix");
 
-    const auto radianceLocation = glGetUniformLocation(glslProgram.glId(), "uRadiance");
-    const auto lightDirlocation = glGetUniformLocation(glslProgram.glId(), "uLightDir");
+    //const auto radianceLocation = glGetUniformLocation(glslProgram.glId(), "uRadiance");
+    //const auto lightDirLocation = glGetUniformLocation(glslProgram.glId(), "uLightDir");
+    const auto radianceLocation = glGetUniformLocation(glslProgram.glId(), "uLightIntensity");
+    const auto lightDirLocation = glGetUniformLocation(glslProgram.glId(), "uLightDirection");
+
+    const auto baseColorLocation = glGetUniformLocation(glslProgram.glId(), "uBaseColorTexture");
+
 
     glm::vec3 lightDirection = glm::vec3(1);
     glm::vec3 lightIntensity = glm::vec3(1);
@@ -51,12 +58,18 @@ int ViewerApplication::run() {
         return -1;
     }
 
+
     std::vector<GLuint> textureObjects = createTextureObjects(model);
+
     GLuint whiteTexture;
     float white[] = {1,1,1,1};
+
+
     glGenTextures(1, &whiteTexture);
 
+
     glBindTexture(GL_TEXTURE_2D, whiteTexture); // Bind to target GL_TEXTURE_2D
+
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 2, 2, 0,
                  GL_RGB, GL_FLOAT, white); // Set image data
 
@@ -68,6 +81,7 @@ int ViewerApplication::run() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
 
     glBindTexture(GL_TEXTURE_2D, 0);
+
 
     const auto bufferObject = createBufferObjects(model);
     std::vector<VaoRange> meshToVertexArrays;
@@ -110,11 +124,11 @@ int ViewerApplication::run() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         const auto viewMatrix = camera.getViewMatrix();
-        if(lightDirlocation >= 0){
+        if(lightDirLocation >= 0){
             if(cameralight){
-                glUniform3fv(lightDirlocation, 1, glm::value_ptr(glm::vec3(0, 0, 1)));
+                glUniform3fv(lightDirLocation, 1, glm::value_ptr(glm::vec3(0, 0, 1)));
             }else {
-                glUniform3fv(lightDirlocation, 1,
+                glUniform3fv(lightDirLocation, 1,
                              glm::value_ptr(glm::normalize(glm::vec3(viewMatrix * glm::vec4(lightDirection, 0)))));
             }
         }
@@ -123,13 +137,28 @@ int ViewerApplication::run() {
         }
 
 
+        const auto bindMaterial = [&](const auto materialIndex) {
+            if(materialIndex >= 0){
+                const auto &material = model.materials[materialIndex];
+                const auto &pbrMetallicRoughness = material.pbrMetallicRoughness;
+                const auto &texture = model.textures[pbrMetallicRoughness.baseColorTexture.index];
+                glActiveTexture(GL_TEXTURE0);
+                glBindTexture(GL_TEXTURE_2D, whiteTexture);
+                glUniform1i(baseColorLocation, 0);
+            }else{
+                glActiveTexture(GL_TEXTURE0);
+                glBindTexture(GL_TEXTURE_2D, whiteTexture);
+
+                glUniform1i(baseColorLocation, 0);
+            }
+        };
         // The recursive function that should draw a node
         // We use a std::function because a simple lambda cannot be recursive
         const std::function<void(int, const glm::mat4 &)> drawNode =
                 [&](int nodeIdx, const glm::mat4 &parentMatrix) {
                     const auto &node = model.nodes[nodeIdx];
                     glm::mat4 modelMatrix = getLocalToWorldMatrix(node, parentMatrix);
-           
+
                     if (node.mesh >= 0) {
                         glm::mat4 modelViewMatrix = viewMatrix * modelMatrix;
                         glm::mat4 modelViewProjectionMatrix = projMatrix * modelViewMatrix;
@@ -140,30 +169,30 @@ int ViewerApplication::run() {
                         glUniformMatrix4fv(normalMatrixLocation, 1, GL_FALSE, glm::value_ptr(normalMatrix));
                         const auto &mesh = model.meshes[node.mesh];
                         const auto &vaoRange = meshToVertexArrays[node.mesh];
-                   
+
                         for (size_t primitiveIdx = 0; primitiveIdx < mesh.primitives.size(); primitiveIdx++) {
                             const auto vaoP = vertexArrayObjects[vaoRange.begin + primitiveIdx];
                             const auto primitive = mesh.primitives[primitiveIdx];
+                            bindMaterial(primitive.material);
                             glBindVertexArray(vaoP);
 
                             if (primitive.indices >= 0) {
-                  
                                 const auto &accessor = model.accessors[primitive.indices];
                                 const auto &bufferView = model.bufferViews[accessor.bufferView];
                                 const auto byteOffset = accessor.byteOffset + bufferView.byteOffset;
-                             
+
                                 glDrawElements(primitive.mode, GLsizei(accessor.count), accessor.componentType,
                                                (const GLvoid *) byteOffset);
-                            
+
                             } else {
-                       
+
                                 const auto accessorIdx = (*begin(primitive.attributes)).second;
                                 const auto &accessor = model.accessors[accessorIdx];
                                 glDrawArrays(primitive.mode, 0, GLsizei(accessor.count));
-                      
+
                             }
                         }
-               
+
                     }
                     for (const auto child : node.children) {
                         drawNode(child, modelMatrix);
@@ -431,6 +460,7 @@ std::vector<GLuint> ViewerApplication::createTextureObjects(const tinygltf::Mode
     defaultSampler.wrapT = GL_REPEAT;
     defaultSampler.wrapR = GL_REPEAT;
 
+
     for(auto &texture : model.textures){
         const auto &image = model.images[texture.source];
         GLuint texObject;
@@ -438,8 +468,10 @@ std::vector<GLuint> ViewerApplication::createTextureObjects(const tinygltf::Mode
         glGenTextures(1, &texObject);
 
         glBindTexture(GL_TEXTURE_2D, texObject); // Bind to target GL_TEXTURE_2D
+
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.width, image.height, 0,
-                     GL_RGB, GL_FLOAT, image.image.data()); // Set image data
+                     GL_RGB, image.pixel_type, image.image.data()); // Set image data
+
 
         const auto &sampler = (texture.sampler >= 0 ) ? model.samplers[texture.sampler] : defaultSampler;
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
