@@ -1,55 +1,14 @@
-Determining if the pthread_create exist failed with the following output:
-Change Dir: /home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/CMakeFiles/CMakeTmp
+Determining if the include file pthread.h exists failed with the following output:
+Change Dir: C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_59e55/fast"
-/usr/bin/make -f CMakeFiles/cmTC_59e55.dir/build.make CMakeFiles/cmTC_59e55.dir/build
-make[1] : on entre dans le répertoire « /home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/CMakeFiles/CMakeTmp »
-Building C object CMakeFiles/cmTC_59e55.dir/CheckSymbolExists.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_59e55.dir/CheckSymbolExists.c.o   -c /home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_59e55
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_59e55.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_59e55.dir/CheckSymbolExists.c.o  -o cmTC_59e55 -rdynamic 
-CMakeFiles/cmTC_59e55.dir/CheckSymbolExists.c.o : Dans la fonction « main » :
-CheckSymbolExists.c:(.text+0x1b) : référence indéfinie vers « pthread_create »
-collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_59e55.dir/build.make:97 : la recette pour la cible « cmTC_59e55 » a échouée
-make[1]: *** [cmTC_59e55] Erreur 1
-make[1] : on quitte le répertoire « /home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/CMakeFiles/CMakeTmp »
-Makefile:126 : la recette pour la cible « cmTC_59e55/fast » a échouée
-make: *** [cmTC_59e55/fast] Erreur 2
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_df79b.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.4.0+e901037fe pour .NET Framework
+Copyright (C) Microsoft Corporation. Tous droits réservés.
+
+  Compilateur d'optimisation Microsoft (R) C/C++ version 19.24.28316 pour x64
+  CheckIncludeFile.c
+  Copyright (C) Microsoft Corporation. Tous droits réservés.
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_df79b.dir\Debug\\" /Fd"cmTC_df79b.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\build-gltf-viewer\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\build-gltf-viewer\CMakeFiles\CMakeTmp\CheckIncludeFile.c(1,10): fatal error C1083: Impossible d'ouvrir le fichier include : 'pthread.h' : No such file or directory [C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\build-gltf-viewer\CMakeFiles\CMakeTmp\cmTC_df79b.vcxproj]
 
-File /home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
-/* */
-#include <pthread.h>
-
-int main(int argc, char** argv)
-{
-  (void)argv;
-#ifndef pthread_create
-  return ((int*)(&pthread_create))[argc];
-#else
-  (void)argc;
-  return 0;
-#endif
-}
-
-Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/CMakeFiles/CMakeTmp
-
-Run Build Command:"/usr/bin/make" "cmTC_cf8b3/fast"
-/usr/bin/make -f CMakeFiles/cmTC_cf8b3.dir/build.make CMakeFiles/cmTC_cf8b3.dir/build
-make[1] : on entre dans le répertoire « /home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/CMakeFiles/CMakeTmp »
-Building C object CMakeFiles/cmTC_cf8b3.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_cf8b3.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
-Linking C executable cmTC_cf8b3
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cf8b3.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_cf8b3.dir/CheckFunctionExists.c.o  -o cmTC_cf8b3 -rdynamic -lpthreads 
-/usr/bin/ld : ne peut trouver -lpthreads
-collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_cf8b3.dir/build.make:97 : la recette pour la cible « cmTC_cf8b3 » a échouée
-make[1]: *** [cmTC_cf8b3] Erreur 1
-make[1] : on quitte le répertoire « /home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/CMakeFiles/CMakeTmp »
-Makefile:126 : la recette pour la cible « cmTC_cf8b3/fast » a échouée
-make: *** [cmTC_cf8b3/fast] Erreur 2
 
 

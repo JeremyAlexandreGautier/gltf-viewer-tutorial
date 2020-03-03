@@ -73,6 +73,15 @@
     "clocale": "cpp",
     "forward_list": "cpp",
     "string_view": "cpp",
-    "valarray": "cpp"
+    "valarray": "cpp",
+    "atomic": "cpp",
+    "cstdarg": "cpp",
+    "cwctype": "cpp",
+    "deque": "cpp",
+    "optional": "cpp",
+    "queue": "cpp",
+    "*.tcc": "cpp",
+    "memory_resource": "cpp",
+    "cinttypes": "cpp"
   }
 }

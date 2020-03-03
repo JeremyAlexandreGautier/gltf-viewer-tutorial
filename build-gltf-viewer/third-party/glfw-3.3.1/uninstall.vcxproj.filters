@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\build-gltf-viewer\CMakeFiles\c0872b35f5aa8e98a93aca5080350917\uninstall.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\third-party\glfw-3.3.1\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Jerem\Project\Synthese\gltf-viewer-tutorial\build-gltf-viewer\third-party\glfw-3.3.1\CMakeFiles\uninstall" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{71F862AF-A591-3B48-B686-B3FE088BE0E0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

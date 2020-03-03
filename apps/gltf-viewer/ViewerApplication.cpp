@@ -46,6 +46,12 @@ int ViewerApplication::run() {
     const auto lightDirLocation = glGetUniformLocation(glslProgram.glId(), "uLightDirection");
 
     const auto baseColorLocation = glGetUniformLocation(glslProgram.glId(), "uBaseColorTexture");
+    const auto baseColorFactor = glGetUniformLocation(glslProgram.glId(), "uBaseColorFactor");
+
+    const auto metallicRoughnessTextureLocation = glGetUniformLocation(glslProgram.glId(), "uMetallicRoughnessTexture");
+    const auto metallicFactorLocation = glGetUniformLocation(glslProgram.glId(), "uMetallicFactor");
+    const auto roughnessFactorLocation = glGetUniformLocation(glslProgram.glId(), "uRoughnessFactor");
+        
 
 
     glm::vec3 lightDirection = glm::vec3(1);
@@ -70,7 +76,7 @@ int ViewerApplication::run() {
 
     glBindTexture(GL_TEXTURE_2D, whiteTexture); // Bind to target GL_TEXTURE_2D
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 2, 2, 0,
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0,
                  GL_RGB, GL_FLOAT, white); // Set image data
 
 
@@ -118,6 +124,65 @@ int ViewerApplication::run() {
     glEnable(GL_DEPTH_TEST);
     glslProgram.use();
 
+    const auto bindMaterial = [&](const auto materialIndex) {
+        auto &tex = whiteTexture;
+        if(materialIndex >= 0){
+            const auto &material = model.materials[materialIndex];
+            const auto &pbrMetallicRoughness = material.pbrMetallicRoughness;
+
+            if(baseColorLocation >= 0){
+                if(pbrMetallicRoughness.baseColorTexture.index >= 0){
+                    const auto &texture = model.textures[pbrMetallicRoughness.baseColorTexture.index];
+                    if(texture.source >= 0){
+                        tex = textureObjects[texture.source];
+                    }
+                }
+                glActiveTexture(GL_TEXTURE0);
+                glBindTexture(GL_TEXTURE_2D, tex);
+                glUniform1i(baseColorLocation, 0);
+            }
+
+            if (baseColorFactor >= 0) {
+                glUniform4f(
+                    baseColorFactor, static_cast<float>(pbrMetallicRoughness.baseColorFactor[0]),
+                    static_cast<float>(pbrMetallicRoughness.baseColorFactor[1]),
+                    static_cast<float>(pbrMetallicRoughness.baseColorFactor[2]),
+                    static_cast<float>(pbrMetallicRoughness.baseColorFactor[3])
+                );
+                //glUniform4fv(baseColorFactor, 1, glm::value_ptr(pbrMetallicRoughness.baseColorFactor));
+            }else{
+                glUniform4f(baseColorFactor, 1,1,1,1);
+            }
+
+            if (metallicRoughnessTextureLocation >= 0) {
+                    GLuint tex2 = 0;
+                    if (pbrMetallicRoughness.metallicRoughnessTexture.index >= 0) {
+                        const tinygltf::Texture
+                                &texture = model.textures[pbrMetallicRoughness.metallicRoughnessTexture.index];
+                        if (texture.source >= 0) {
+                            tex2 = textureObjects[texture.source];
+                        }
+                    }
+                    glActiveTexture(GL_TEXTURE1);
+                    glBindTexture(GL_TEXTURE_2D, tex2);
+                    glUniform1i(metallicRoughnessTextureLocation, 1);
+                }
+                
+                if (metallicFactorLocation >= 0) {
+                    glUniform1f(metallicFactorLocation, static_cast<float>(pbrMetallicRoughness.metallicFactor));
+                }
+                
+                if (roughnessFactorLocation >= 0) {
+                    glUniform1f(roughnessFactorLocation, static_cast<float>(pbrMetallicRoughness.roughnessFactor));
+                }
+        }else{
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, tex);
+            glUniform1i(baseColorLocation, 0);
+        }
+    };
+
+
     // Lambda function to draw the scene
     const auto drawScene = [&](const Camera &camera) {
         glViewport(0, 0, m_nWindowWidth, m_nWindowHeight);
@@ -136,29 +201,6 @@ int ViewerApplication::run() {
             glUniform3fv(radianceLocation, 1, glm::value_ptr(lightIntensity));
         }
 
-
-        const auto bindMaterial = [&](const auto materialIndex) {
-            auto &tex = whiteTexture;
-            if(materialIndex >= 0){
-                const auto &material = model.materials[materialIndex];
-                const auto &pbrMetallicRoughness = material.pbrMetallicRoughness;
-
-                if(pbrMetallicRoughness.baseColorTexture.index >= 0){
-                    const auto &texture = model.textures[pbrMetallicRoughness.baseColorTexture.index];
-                    if(texture.source >= 0){
-                        tex = textureObjects[texture.source];
-                    }
-                }
-                glActiveTexture(GL_TEXTURE0);
-                glBindTexture(GL_TEXTURE_2D, tex);
-                glUniform1i(baseColorLocation, 0);
-            }else{
-                glActiveTexture(GL_TEXTURE0);
-                glBindTexture(GL_TEXTURE_2D, tex);
-
-                glUniform1i(baseColorLocation, 0);
-            }
-        };
         // The recursive function that should draw a node
         // We use a std::function because a simple lambda cannot be recursive
         const std::function<void(int, const glm::mat4 &)> drawNode =
@@ -458,7 +500,7 @@ ViewerApplication::createVertexArrayObjects(const tinygltf::Model &model, const 
 }
 
 std::vector<GLuint> ViewerApplication::createTextureObjects(const tinygltf::Model &model) const{
-    std::vector<GLuint> textures(model.textures.size());
+    std::vector<GLuint> textures(model.textures.size(),0);
 
     tinygltf::Sampler defaultSampler;
     defaultSampler.minFilter = GL_LINEAR;
@@ -467,24 +509,19 @@ std::vector<GLuint> ViewerApplication::createTextureObjects(const tinygltf::Mode
     defaultSampler.wrapT = GL_REPEAT;
     defaultSampler.wrapR = GL_REPEAT;
 
-
     glActiveTexture(GL_TEXTURE0);
-    glGenTextures((GLsizei)model.textures.size(), textures.data());
+    glGenTextures(GLsizei(model.textures.size()), textures.data());
 
-    for(int i = 0; i < model.textures.size(); i++){
-        auto &texture = model.textures[i];
-
+    for(size_t i = 0; i < model.textures.size(); i++){
+        const auto &texture = model.textures[i];
         const auto &image = model.images[texture.source];
-
         const auto &sampler = (texture.sampler >= 0 ) ? model.samplers[texture.sampler] : defaultSampler;
 
 
-        glBindTexture(GL_TEXTURE_2D, textures[i]); // Bind to target GL_TEXTURE_2D
+        glBindTexture(GL_TEXTURE_2D, textures[i]); 
 
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.width, image.height, 0,
-                     GL_RGB, image.pixel_type, image.image.data()); // Set image data
-
-
+                     GL_RGBA, image.pixel_type, image.image.data());
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
                         sampler.minFilter != -1 ? sampler.minFilter : GL_LINEAR);
@@ -494,13 +531,18 @@ std::vector<GLuint> ViewerApplication::createTextureObjects(const tinygltf::Mode
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, sampler.wrapT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, sampler.wrapR);
 
-        glBindTexture(GL_TEXTURE_2D, 0);
+        if (sampler.minFilter == GL_NEAREST_MIPMAP_NEAREST
+            || sampler.minFilter == GL_NEAREST_MIPMAP_LINEAR
+            || sampler.minFilter == GL_LINEAR_MIPMAP_NEAREST
+            || sampler.minFilter == GL_LINEAR_MIPMAP_LINEAR) {
+            glGenerateMipmap(GL_TEXTURE_2D);
+        }
+
+                
     }
+    glBindTexture(GL_TEXTURE_2D, 0);
     return textures;
 
 }
-
-
-
 
 
