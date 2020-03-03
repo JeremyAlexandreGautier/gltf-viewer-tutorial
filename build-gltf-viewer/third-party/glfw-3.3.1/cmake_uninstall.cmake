@@ -1,22 +1,22 @@
 
-if (NOT EXISTS "C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/install_manifest.txt")
-  message(FATAL_ERROR "Cannot find install manifest: \"C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/install_manifest.txt\"")
+if (NOT EXISTS "/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/install_manifest.txt")
+  message(FATAL_ERROR "Cannot find install manifest: \"/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/install_manifest.txt\"")
 endif()
 
-file(READ "C:/Users/Jerem/Project/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/install_manifest.txt" files)
+file(READ "/home/2ins2/jgautier/M2/Synthese/gltf-viewer-tutorial/build-gltf-viewer/third-party/glfw-3.3.1/install_manifest.txt" files)
 string(REGEX REPLACE "\n" ";" files "${files}")
 
 foreach (file ${files})
   message(STATUS "Uninstalling \"$ENV{DESTDIR}${file}\"")
   if (EXISTS "$ENV{DESTDIR}${file}")
-    exec_program("C:/Users/Jerem/Project/cmake-3.17.0-rc1-win64-x64/bin/cmake.exe" ARGS "-E remove \"$ENV{DESTDIR}${file}\""
+    exec_program("/usr/bin/cmake" ARGS "-E remove \"$ENV{DESTDIR}${file}\""
                  OUTPUT_VARIABLE rm_out
                  RETURN_VALUE rm_retval)
     if (NOT "${rm_retval}" STREQUAL 0)
       MESSAGE(FATAL_ERROR "Problem when removing \"$ENV{DESTDIR}${file}\"")
     endif()
   elseif (IS_SYMLINK "$ENV{DESTDIR}${file}")
-    EXEC_PROGRAM("C:/Users/Jerem/Project/cmake-3.17.0-rc1-win64-x64/bin/cmake.exe" ARGS "-E remove \"$ENV{DESTDIR}${file}\""
+    EXEC_PROGRAM("/usr/bin/cmake" ARGS "-E remove \"$ENV{DESTDIR}${file}\""
                  OUTPUT_VARIABLE rm_out
                  RETURN_VALUE rm_retval)
     if (NOT "${rm_retval}" STREQUAL 0)

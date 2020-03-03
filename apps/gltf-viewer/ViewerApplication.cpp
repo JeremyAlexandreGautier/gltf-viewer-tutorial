@@ -38,6 +38,12 @@ int ViewerApplication::run() {
     const auto normalMatrixLocation =
             glGetUniformLocation(glslProgram.glId(), "uNormalMatrix");
 
+    const auto radianceLocation = glGetUniformLocation(glslProgram.glId(), "uRadiance");
+    const auto lightDirlocation = glGetUniformLocation(glslProgram.glId(), "uLightDir");
+
+    glm::vec3 lightDirection = glm::vec3(1);
+    glm::vec3 lightIntensity = glm::vec3(1);
+    bool cameralight = false;
 
 
     tinygltf::Model model;
@@ -93,6 +99,18 @@ int ViewerApplication::run() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         const auto viewMatrix = camera.getViewMatrix();
+        if(lightDirlocation >= 0){
+            if(cameralight){
+                glUniform3fv(lightDirlocation, 1, glm::value_ptr(glm::vec3(0, 0, 1)));
+            }else {
+                glUniform3fv(lightDirlocation, 1,
+                             glm::value_ptr(glm::normalize(glm::vec3(viewMatrix * glm::vec4(lightDirection, 0)))));
+            }
+        }
+        if(radianceLocation >= 0){
+            glUniform3fv(radianceLocation, 1, glm::value_ptr(lightIntensity));
+        }
+
 
         // The recursive function that should draw a node
         // We use a std::function because a simple lambda cannot be recursive
@@ -197,22 +215,37 @@ int ViewerApplication::run() {
                     glfwSetClipboardString(m_GLFWHandle.window(), str.c_str());
                 }
 
-                
-                static int cameraControllerType = 0;
-                const auto cameraControllerTypeChanged =
-                    ImGui::RadioButton("Trackball", &cameraControllerType, 0) ||
-                    ImGui::RadioButton("First Person", &cameraControllerType, 1);
-                if (cameraControllerTypeChanged) {
+                static float theta = 0.f, phi = 0.f;
+                ImGui::CollapsingHeader("Angle", ImGuiTreeNodeFlags_DefaultOpen);
+
+                ImGui::SliderFloat("Theta", &theta, 0, 3.14);
+                ImGui::SliderFloat("Phi", &phi, 0, 2 * 3.14);
+
+                lightDirection = glm::vec3(glm::sin(theta) * glm::cos(phi),
+                        glm::cos(theta),
+                        glm::sin(theta) * glm::sin(phi));
+
+                //static glm::vec3 color = glm::vec3(1.0f);
+                ImGui::ColorEdit3("Color", (float *)&lightIntensity);
+                //lightIntensity = lightIntensity * color;
+
+
+                static int camera = 0;
                 const auto currentCamera = cameraController->getCamera();
-                if (cameraControllerType == 0) {
+                if(ImGui::RadioButton("Trackball", &camera, 0)){
                     cameraController = std::make_unique<TrackballCameraController>(
-                        m_GLFWHandle.window(), 0.5f * maxDistance);
-                } else {
+                            m_GLFWHandle.window(), 0.5f * maxDistance);
+                };
+
+                if(ImGui::RadioButton("FirstPerson", &camera, 1)){
                     cameraController = std::make_unique<FirstPersonCameraController>(
-                        m_GLFWHandle.window(), 0.5f * maxDistance);
+                            m_GLFWHandle.window(), 0.5f * maxDistance);
                 }
+
                 cameraController->setCamera(currentCamera);
-                }
+
+                ImGui::Checkbox("light from camera", &cameralight);
+
             }
             ImGui::End();
         }
