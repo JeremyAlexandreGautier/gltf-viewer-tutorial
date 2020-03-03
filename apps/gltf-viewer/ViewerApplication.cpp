@@ -138,16 +138,23 @@ int ViewerApplication::run() {
 
 
         const auto bindMaterial = [&](const auto materialIndex) {
+            auto &tex = whiteTexture;
             if(materialIndex >= 0){
                 const auto &material = model.materials[materialIndex];
                 const auto &pbrMetallicRoughness = material.pbrMetallicRoughness;
-                const auto &texture = model.textures[pbrMetallicRoughness.baseColorTexture.index];
+
+                if(pbrMetallicRoughness.baseColorTexture.index >= 0){
+                    const auto &texture = model.textures[pbrMetallicRoughness.baseColorTexture.index];
+                    if(texture.source >= 0){
+                        tex = textureObjects[texture.source];
+                    }
+                }
                 glActiveTexture(GL_TEXTURE0);
-                glBindTexture(GL_TEXTURE_2D, whiteTexture);
+                glBindTexture(GL_TEXTURE_2D, tex);
                 glUniform1i(baseColorLocation, 0);
             }else{
                 glActiveTexture(GL_TEXTURE0);
-                glBindTexture(GL_TEXTURE_2D, whiteTexture);
+                glBindTexture(GL_TEXTURE_2D, tex);
 
                 glUniform1i(baseColorLocation, 0);
             }
@@ -451,7 +458,7 @@ ViewerApplication::createVertexArrayObjects(const tinygltf::Model &model, const 
 }
 
 std::vector<GLuint> ViewerApplication::createTextureObjects(const tinygltf::Model &model) const{
-    std::vector<GLuint> textures;
+    std::vector<GLuint> textures(model.textures.size());
 
     tinygltf::Sampler defaultSampler;
     defaultSampler.minFilter = GL_LINEAR;
@@ -461,19 +468,24 @@ std::vector<GLuint> ViewerApplication::createTextureObjects(const tinygltf::Mode
     defaultSampler.wrapR = GL_REPEAT;
 
 
-    for(auto &texture : model.textures){
+    glActiveTexture(GL_TEXTURE0);
+    glGenTextures((GLsizei)model.textures.size(), textures.data());
+
+    for(int i = 0; i < model.textures.size(); i++){
+        auto &texture = model.textures[i];
+
         const auto &image = model.images[texture.source];
-        GLuint texObject;
 
-        glGenTextures(1, &texObject);
+        const auto &sampler = (texture.sampler >= 0 ) ? model.samplers[texture.sampler] : defaultSampler;
 
-        glBindTexture(GL_TEXTURE_2D, texObject); // Bind to target GL_TEXTURE_2D
+
+        glBindTexture(GL_TEXTURE_2D, textures[i]); // Bind to target GL_TEXTURE_2D
 
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.width, image.height, 0,
                      GL_RGB, image.pixel_type, image.image.data()); // Set image data
 
 
-        const auto &sampler = (texture.sampler >= 0 ) ? model.samplers[texture.sampler] : defaultSampler;
+
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
                         sampler.minFilter != -1 ? sampler.minFilter : GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
@@ -483,9 +495,6 @@ std::vector<GLuint> ViewerApplication::createTextureObjects(const tinygltf::Mode
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, sampler.wrapR);
 
         glBindTexture(GL_TEXTURE_2D, 0);
-
-        textures.push_back(texObject);
-
     }
     return textures;
 
