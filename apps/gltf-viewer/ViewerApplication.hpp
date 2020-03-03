@@ -15,7 +15,7 @@ public:
 
     int run();
 
-    bool loadGltfFile(tinygltf::Model &model);
+
 
 
 private:
@@ -34,7 +34,7 @@ private:
 
     fs::path m_gltfFilePath;
     std::string m_vertexShader = "forward.vs.glsl";
-    std::string m_fragmentShader = "diffuse_directional_light.fs.glsl";//"normals.fs.glsl";
+    std::string m_fragmentShader = "pbr_directional_light.fs.glsl";
 
     bool m_hasUserCamera = false;
     Camera m_userCamera;
@@ -58,7 +58,11 @@ private:
       the creation of a GLFW windows and thus a GL context which must exists
       before most of OpenGL function calls.
     */
+
+    bool loadGltfFile(tinygltf::Model &model);
     std::vector<GLuint> createBufferObjects(const tinygltf::Model &model);
     std::vector<GLuint> createVertexArrayObjects(const tinygltf::Model &model, const std::vector<GLuint> &bufferObjects,
                                                  std::vector<VaoRange> &meshToVertexArrays);
+
+    std::vector<GLuint> createTextureObjects(const tinygltf::Model &model) const;
 };

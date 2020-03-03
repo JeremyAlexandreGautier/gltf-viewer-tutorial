@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "bin/shaders/gltf-viewer/forward.vs.glsl"
   "bin/shaders/gltf-viewer/magenta.fs.glsl"
   "bin/shaders/gltf-viewer/normals.fs.glsl"
+  "bin/shaders/gltf-viewer/pbr_directional_light.fs.glsl"
   "CMakeFiles/gltf-viewer.dir/apps/gltf-viewer/ViewerApplication.cpp.o"
   "CMakeFiles/gltf-viewer.dir/apps/gltf-viewer/main.cpp.o"
   "CMakeFiles/gltf-viewer.dir/apps/gltf-viewer/tiny_gltf_impl.cpp.o"

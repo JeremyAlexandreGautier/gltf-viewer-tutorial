@@ -51,6 +51,24 @@ int ViewerApplication::run() {
         return -1;
     }
 
+    std::vector<GLuint> textureObjects = createTextureObjects(model);
+    GLuint whiteTexture;
+    float white[] = {1,1,1,1};
+    glGenTextures(1, &whiteTexture);
+
+    glBindTexture(GL_TEXTURE_2D, whiteTexture); // Bind to target GL_TEXTURE_2D
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 2, 2, 0,
+                 GL_RGB, GL_FLOAT, white); // Set image data
+
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+
     const auto bufferObject = createBufferObjects(model);
     std::vector<VaoRange> meshToVertexArrays;
     const auto vertexArrayObjects = createVertexArrayObjects(model, bufferObject, meshToVertexArrays);
@@ -67,22 +85,15 @@ int ViewerApplication::run() {
             glm::perspective(70.f, float(m_nWindowWidth) / m_nWindowHeight,
                              0.001f * maxDistance, 1.5f * maxDistance);
 
-    // TODO Implement a new CameraController model and use it instead. Propose the
-    // choice from the GUI
 
-    /*FirstPersonCameraController cameraController{
-            m_GLFWHandle.window(), 10.f * maxDistance};*/
-    //TrackballCameraController cameraController{m_GLFWHandle.window(), 10.f * maxDistance};
     std::unique_ptr<CameraController> cameraController = std::make_unique<TrackballCameraController>(m_GLFWHandle.window(), 0.5f * maxDistance);
 
 
     if (m_hasUserCamera) {
         cameraController -> setCamera(m_userCamera);
     } else {
-        //cameraController.setCamera(Camera{glm::vec3(0, 0, 0), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0)});
         const auto center_scene = (bboxMax + bboxMin) * 0.5f;
         const auto up = glm::vec3(0,1,0);
-        //const auto eye = (bboxMax.z > 0 ) ? bboxMax : center_scene + 2.f * glm::cross(bboxMax, up);
         const auto eye = (diagonal_vec.z > 0 ) ? diagonal_vec : center_scene + 2.f * glm::cross(diagonal_vec, up);
 
         cameraController -> setCamera(Camera(eye, center_scene, up));
@@ -408,6 +419,44 @@ ViewerApplication::createVertexArrayObjects(const tinygltf::Model &model, const 
         glBindVertexArray(0);
     }
     return vertexArrayObjects;
+}
+
+std::vector<GLuint> ViewerApplication::createTextureObjects(const tinygltf::Model &model) const{
+    std::vector<GLuint> textures;
+
+    tinygltf::Sampler defaultSampler;
+    defaultSampler.minFilter = GL_LINEAR;
+    defaultSampler.magFilter = GL_LINEAR;
+    defaultSampler.wrapS = GL_REPEAT;
+    defaultSampler.wrapT = GL_REPEAT;
+    defaultSampler.wrapR = GL_REPEAT;
+
+    for(auto &texture : model.textures){
+        const auto &image = model.images[texture.source];
+        GLuint texObject;
+
+        glGenTextures(1, &texObject);
+
+        glBindTexture(GL_TEXTURE_2D, texObject); // Bind to target GL_TEXTURE_2D
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.width, image.height, 0,
+                     GL_RGB, GL_FLOAT, image.image.data()); // Set image data
+
+        const auto &sampler = (texture.sampler >= 0 ) ? model.samplers[texture.sampler] : defaultSampler;
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+                        sampler.minFilter != -1 ? sampler.minFilter : GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+                        sampler.magFilter != -1 ? sampler.magFilter : GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, sampler.wrapS);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, sampler.wrapT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, sampler.wrapR);
+
+        glBindTexture(GL_TEXTURE_2D, 0);
+
+        textures.push_back(texObject);
+
+    }
+    return textures;
+
 }
 
 

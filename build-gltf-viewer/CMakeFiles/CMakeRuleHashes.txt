@@ -3,4 +3,5 @@
 4ed0f858a88c3ceffe322798afc2e226 bin/shaders/gltf-viewer/forward.vs.glsl
 b5aebae9ff988eaa75567f47249c097c bin/shaders/gltf-viewer/magenta.fs.glsl
 2c469d2a0d8ed3e66b98067db3e7f64b bin/shaders/gltf-viewer/normals.fs.glsl
+00bf81de36410975c181041eead024cc bin/shaders/gltf-viewer/pbr_directional_light.fs.glsl
 c7d8c5ff4b310d9efe4bb6eb827caa8b third-party/glfw-3.3.1/CMakeFiles/uninstall
