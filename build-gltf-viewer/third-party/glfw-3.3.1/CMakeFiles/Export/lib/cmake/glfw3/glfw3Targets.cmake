@@ -55,6 +55,7 @@ add_library(glfw STATIC IMPORTED)
 
 set_target_properties(glfw PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
+  INTERFACE_LINK_LIBRARIES "/usr/lib/x86_64-linux-gnu/librt.so;/usr/lib/x86_64-linux-gnu/libm.so;\$<LINK_ONLY:dl>;/usr/lib/x86_64-linux-gnu/libX11.so;\$<LINK_ONLY:-lpthread>"
 )
 
 # Load information for each installed configuration.

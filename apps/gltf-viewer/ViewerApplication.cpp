@@ -32,7 +32,6 @@ int ViewerApplication::run() {
             compileProgram({m_ShadersRootPath / m_AppName / m_vertexShader,
                             m_ShadersRootPath / m_AppName / m_fragmentShader});
 
-
     const auto modelViewProjMatrixLocation =
             glGetUniformLocation(glslProgram.glId(), "uModelViewProjMatrix");
     const auto modelViewMatrixLocation =
@@ -40,22 +39,21 @@ int ViewerApplication::run() {
     const auto normalMatrixLocation =
             glGetUniformLocation(glslProgram.glId(), "uNormalMatrix");
 
-    //const auto radianceLocation = glGetUniformLocation(glslProgram.glId(), "uRadiance");
+    //const auto lightIntensityLocation = glGetUniformLocation(glslProgram.glId(), "uRadiance");
     //const auto lightDirLocation = glGetUniformLocation(glslProgram.glId(), "uLightDir");
-    const auto radianceLocation = glGetUniformLocation(glslProgram.glId(), "uLightIntensity");
+    const auto lightIntensityLocation = glGetUniformLocation(glslProgram.glId(), "uLightIntensity");
     const auto lightDirLocation = glGetUniformLocation(glslProgram.glId(), "uLightDirection");
 
     const auto baseColorLocation = glGetUniformLocation(glslProgram.glId(), "uBaseColorTexture");
-    const auto baseColorFactor = glGetUniformLocation(glslProgram.glId(), "uBaseColorFactor");
+    const auto baseColorFactorLocation = glGetUniformLocation(glslProgram.glId(), "uBaseColorFactor");
 
     const auto metallicRoughnessTextureLocation = glGetUniformLocation(glslProgram.glId(), "uMetallicRoughnessTexture");
     const auto metallicFactorLocation = glGetUniformLocation(glslProgram.glId(), "uMetallicFactor");
     const auto roughnessFactorLocation = glGetUniformLocation(glslProgram.glId(), "uRoughnessFactor");
-        
 
 
     glm::vec3 lightDirection = glm::vec3(1);
-    glm::vec3 lightIntensity = glm::vec3(1);
+    glm::vec3 lightIntensity = glm::vec3(1.25);
     bool cameralight = false;
 
 
@@ -64,28 +62,20 @@ int ViewerApplication::run() {
         return -1;
     }
 
-
     std::vector<GLuint> textureObjects = createTextureObjects(model);
 
     GLuint whiteTexture;
-    float white[] = {1,1,1,1};
+    float white[] = {1.,1.,1.,1.};
 
 
     glGenTextures(1, &whiteTexture);
-
-
-    glBindTexture(GL_TEXTURE_2D, whiteTexture); // Bind to target GL_TEXTURE_2D
-
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0,
-                 GL_RGB, GL_FLOAT, white); // Set image data
-
-
+    glBindTexture(GL_TEXTURE_2D, whiteTexture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 2, 2, 0, GL_RGBA, GL_FLOAT, white);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
-
     glBindTexture(GL_TEXTURE_2D, 0);
 
 
@@ -125,12 +115,13 @@ int ViewerApplication::run() {
     glslProgram.use();
 
     const auto bindMaterial = [&](const auto materialIndex) {
-        auto &tex = whiteTexture;
+
         if(materialIndex >= 0){
             const auto &material = model.materials[materialIndex];
             const auto &pbrMetallicRoughness = material.pbrMetallicRoughness;
 
             if(baseColorLocation >= 0){
+                auto &tex = whiteTexture;
                 if(pbrMetallicRoughness.baseColorTexture.index >= 0){
                     const auto &texture = model.textures[pbrMetallicRoughness.baseColorTexture.index];
                     if(texture.source >= 0){
@@ -142,23 +133,22 @@ int ViewerApplication::run() {
                 glUniform1i(baseColorLocation, 0);
             }
 
-            if (baseColorFactor >= 0) {
-                glUniform4f(
-                    baseColorFactor, static_cast<float>(pbrMetallicRoughness.baseColorFactor[0]),
-                    static_cast<float>(pbrMetallicRoughness.baseColorFactor[1]),
-                    static_cast<float>(pbrMetallicRoughness.baseColorFactor[2]),
-                    static_cast<float>(pbrMetallicRoughness.baseColorFactor[3])
-                );
-                //glUniform4fv(baseColorFactor, 1, glm::value_ptr(pbrMetallicRoughness.baseColorFactor));
-            }else{
-                glUniform4f(baseColorFactor, 1,1,1,1);
-            }
+            if (baseColorFactorLocation >= 0) {
+                glm::vec4 pbrM = glm::vec<4,float>((pbrMetallicRoughness.baseColorFactor[0]),
+                                           (pbrMetallicRoughness.baseColorFactor[1]),
+                                           (pbrMetallicRoughness.baseColorFactor[2]),
+                                           (pbrMetallicRoughness.baseColorFactor[3]));
+                glUniform4fv(baseColorFactorLocation, 1, glm::value_ptr(pbrM));
+            }/*else{
+                glm::vec4 b = glm::vec<4, float>(1.,1.,1.,1.);
+                glUniform4fv(baseColorFactorLocation, 1, glm::value_ptr(b));
+                //glUniform4f(baseColorFactorLocation, 1, 1, 1, 1);
+            }*/
 
             if (metallicRoughnessTextureLocation >= 0) {
                     GLuint tex2 = 0;
                     if (pbrMetallicRoughness.metallicRoughnessTexture.index >= 0) {
-                        const tinygltf::Texture
-                                &texture = model.textures[pbrMetallicRoughness.metallicRoughnessTexture.index];
+                        const auto &texture = model.textures[pbrMetallicRoughness.metallicRoughnessTexture.index];
                         if (texture.source >= 0) {
                             tex2 = textureObjects[texture.source];
                         }
@@ -169,16 +159,36 @@ int ViewerApplication::run() {
                 }
                 
                 if (metallicFactorLocation >= 0) {
-                    glUniform1f(metallicFactorLocation, static_cast<float>(pbrMetallicRoughness.metallicFactor));
+                    glUniform1f(metallicFactorLocation, float(pbrMetallicRoughness.metallicFactor));
                 }
                 
                 if (roughnessFactorLocation >= 0) {
-                    glUniform1f(roughnessFactorLocation, static_cast<float>(pbrMetallicRoughness.roughnessFactor));
+                    glUniform1f(roughnessFactorLocation, float(pbrMetallicRoughness.roughnessFactor));
                 }
         }else{
-            glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, tex);
-            glUniform1i(baseColorLocation, 0);
+            if (baseColorLocation >= 0) {
+                glActiveTexture(GL_TEXTURE0);
+                glBindTexture(GL_TEXTURE_2D, whiteTexture);
+                glUniform1i(baseColorLocation, 0);
+            }
+
+            if (baseColorFactorLocation >= 0) {
+                glUniform4f(baseColorFactorLocation, 1, 1, 1, 1);
+            }
+
+            if (metallicRoughnessTextureLocation >= 0) {
+                glActiveTexture(GL_TEXTURE1);
+                glBindTexture(GL_TEXTURE_2D, 0);
+                glUniform1i(metallicRoughnessTextureLocation, 0);
+            }
+
+            if (metallicFactorLocation >= 0) {
+                glUniform1f(metallicFactorLocation, 1.f);
+            }
+
+            if (roughnessFactorLocation >= 0) {
+                glUniform1f(roughnessFactorLocation, 1.f);
+            }
         }
     };
 
@@ -197,8 +207,8 @@ int ViewerApplication::run() {
                              glm::value_ptr(glm::normalize(glm::vec3(viewMatrix * glm::vec4(lightDirection, 0)))));
             }
         }
-        if(radianceLocation >= 0){
-            glUniform3fv(radianceLocation, 1, glm::value_ptr(lightIntensity));
+        if(lightIntensityLocation >= 0){
+            glUniform3fv(lightIntensityLocation, 1, glm::value_ptr(lightIntensity));
         }
 
         // The recursive function that should draw a node

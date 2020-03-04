@@ -1,5 +1,5 @@
-#version 300 es
-precision mediump float;
+#version 330
+//precision mediump float;
 
 
 in vec2 vTexCoords;
@@ -22,7 +22,6 @@ const float GAMMA = 2.2;
 const float INV_GAMMA = 1. / GAMMA;
 const float M_PI = 3.141592653589793;
 const float M_1_PI = 1.0 / M_PI;
-
 const vec3 dieletricSpecular = vec3(0.04, 0.04, 0.04);
 
 // We need some simple tone mapping functions
@@ -55,14 +54,17 @@ void main()
     
     
     vec4 baseColorFromTexture = SRGBtoLINEAR(texture(uBaseColorTexture, vTexCoords));
-    vec4 metallicRougnessFromTexture = texture(uMetallicRoughnessTexture, vTexCoords);
     vec4 baseColor = baseColorFromTexture * uBaseColorFactor;
-    
+
+    vec4 metallicRougnessFromTexture = texture(uMetallicRoughnessTexture, vTexCoords);
+    float roughness = uRoughnessFactor * metallicRougnessFromTexture.g; //roughness green
     vec3 metallic = vec3(uMetallicFactor * metallicRougnessFromTexture.b); // metalic
+
+
     vec3 c_diff = mix(baseColor.rgb * (1. - dieletricSpecular.r), black, metallic);
     vec3 F0 = mix(dieletricSpecular, baseColor.rgb, metallic);
 
-    float roughness = uRoughnessFactor * metallicRougnessFromTexture.g; //roughness green
+
     float alpha = roughness * roughness;
 
     float NdotL = clamp(dot(N, L), 0., 1.);
@@ -70,30 +72,36 @@ void main()
     float NdotH = clamp(dot(N, H), 0., 1.);
     float VdotH = clamp(dot(V, H), 0., 1.);
 
+    vec3 diffuse = c_diff * M_1_PI;
+
     float Vis;
     float alpha2 = alpha * alpha;
-    float dVis = ((NdotL)   *    sqrt((NdotV) * (NdotV) * (1. - alpha2) + alpha2)   +    (NdotV)    *    sqrt((NdotL * NdotL) *  (1. - alpha2) + alpha2)
-    );   
+    float dVis = ((NdotL)   *    sqrt((NdotV) * (NdotV) * (1. - alpha2) + alpha2)   +    (NdotV)    *    sqrt((NdotL * NdotL) *  (1. - alpha2) + alpha2));
     if(dVis > 0.){
         Vis = 0.5 / dVis;
     }
+
+
+    float baseSchlickFactor = (1. - VdotH);
+    float shlickFactor  = baseSchlickFactor * baseSchlickFactor;
+    shlickFactor *= shlickFactor;
+    shlickFactor *= baseSchlickFactor;
+
+    vec3 F = F0 + (1. - F0) * shlickFactor; //Fresnel Schlick
+    vec3 f_diffuse = (1. - F) * diffuse;
     
     float D = 0.;
-    float dD = M_PI * ((NdotH * NdotH) * (alpha2 -1.) +1.);
+    float dD = M_PI * (((NdotH * NdotH) * (alpha2 -1.) +1.) * ((NdotH * NdotH) * (alpha2 -1.) +1.));
     if(dD > 0.){
         D = alpha2 / dD;
     }
 
-    
-    vec3 F = F0 + (1. - F0) - (1. - VdotH); //Fresnel Schlick
-    vec3 diffuse = baseColor.rgb * M_1_PI;
+
+
     vec3 f_specular = (F * Vis * D);
-    vec3 f_diffuse = (1. - F) * diffuse;
     vec3 f = f_diffuse + f_specular;
 
-    float shlickFactor  = F * F;
-    shlickFactor *= shlickFactor;
-    shlickFactor *= F;
+
 
     //fColor = LINEARtoSRGB(diffuse * uLightIntensity * NdotL);
     fColor = LINEARtoSRGB((f_diffuse + f_specular) * uLightIntensity * NdotL);
