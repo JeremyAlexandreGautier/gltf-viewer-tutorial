@@ -53,7 +53,7 @@ int ViewerApplication::run() {
 
 
     glm::vec3 lightDirection = glm::vec3(1);
-    glm::vec3 lightIntensity = glm::vec3(1.25);
+    glm::vec3 lightIntensity = glm::vec3(1.7);
     bool cameralight = false;
 
 
@@ -70,7 +70,7 @@ int ViewerApplication::run() {
 
     glGenTextures(1, &whiteTexture);
     glBindTexture(GL_TEXTURE_2D, whiteTexture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 2, 2, 0, GL_RGBA, GL_FLOAT, white);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_FLOAT, white);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -109,66 +109,60 @@ int ViewerApplication::run() {
         cameraController -> setCamera(Camera(eye, center_scene, up));
     }
 
-
     // Setup OpenGL state for rendering
     glEnable(GL_DEPTH_TEST);
     glslProgram.use();
 
     const auto bindMaterial = [&](const auto materialIndex) {
+        auto &tex = whiteTexture;
 
-        if(materialIndex >= 0){
+        if (materialIndex >= 0) {
             const auto &material = model.materials[materialIndex];
             const auto &pbrMetallicRoughness = material.pbrMetallicRoughness;
+            const auto &baseColorTexture = pbrMetallicRoughness.baseColorTexture;
 
-            if(baseColorLocation >= 0){
-                auto &tex = whiteTexture;
-                if(pbrMetallicRoughness.baseColorTexture.index >= 0){
-                    const auto &texture = model.textures[pbrMetallicRoughness.baseColorTexture.index];
-                    if(texture.source >= 0){
-                        tex = textureObjects[texture.source];
-                    }
+            if (baseColorLocation >= 0) {
+                if (baseColorTexture.index >= 0) {
+                    tex = textureObjects[baseColorTexture.index];
                 }
                 glActiveTexture(GL_TEXTURE0);
                 glBindTexture(GL_TEXTURE_2D, tex);
                 glUniform1i(baseColorLocation, 0);
             }
-
             if (baseColorFactorLocation >= 0) {
-                glm::vec4 pbrM = glm::vec<4,float>((pbrMetallicRoughness.baseColorFactor[0]),
-                                           (pbrMetallicRoughness.baseColorFactor[1]),
-                                           (pbrMetallicRoughness.baseColorFactor[2]),
-                                           (pbrMetallicRoughness.baseColorFactor[3]));
+                glm::vec4 pbrM = glm::vec<4, float>((pbrMetallicRoughness.baseColorFactor[0]),
+                                                    (pbrMetallicRoughness.baseColorFactor[1]),
+                                                    (pbrMetallicRoughness.baseColorFactor[2]),
+                                                    (pbrMetallicRoughness.baseColorFactor[3]));
                 glUniform4fv(baseColorFactorLocation, 1, glm::value_ptr(pbrM));
-            }/*else{
-                glm::vec4 b = glm::vec<4, float>(1.,1.,1.,1.);
-                glUniform4fv(baseColorFactorLocation, 1, glm::value_ptr(b));
-                //glUniform4f(baseColorFactorLocation, 1, 1, 1, 1);
-            }*/
+            }
 
             if (metallicRoughnessTextureLocation >= 0) {
-                    GLuint tex2 = 0;
-                    if (pbrMetallicRoughness.metallicRoughnessTexture.index >= 0) {
-                        const auto &texture = model.textures[pbrMetallicRoughness.metallicRoughnessTexture.index];
-                        if (texture.source >= 0) {
-                            tex2 = textureObjects[texture.source];
+                GLuint tex2 = -1;
+                if (pbrMetallicRoughness.metallicRoughnessTexture.index >= 0) {
+                    const auto &metallicRoughnessTexture = pbrMetallicRoughness.metallicRoughnessTexture;
+                    if (metallicRoughnessTexture.index >= 0) {
+
+                        tex2 = textureObjects[metallicRoughnessTexture.index];
+                        glActiveTexture(GL_TEXTURE1);
+                        glBindTexture(GL_TEXTURE_2D, tex2);
+                        glUniform1i(metallicRoughnessTextureLocation, 1);
+
+                        if (metallicFactorLocation >= 0) {
+                            glUniform1f(metallicFactorLocation, float(pbrMetallicRoughness.metallicFactor));
+                        }
+
+                        if (roughnessFactorLocation >= 0) {
+                            glUniform1f(roughnessFactorLocation, float(pbrMetallicRoughness.roughnessFactor));
                         }
                     }
-                    glActiveTexture(GL_TEXTURE1);
-                    glBindTexture(GL_TEXTURE_2D, tex2);
-                    glUniform1i(metallicRoughnessTextureLocation, 1);
                 }
-                
-                if (metallicFactorLocation >= 0) {
-                    glUniform1f(metallicFactorLocation, float(pbrMetallicRoughness.metallicFactor));
-                }
-                
-                if (roughnessFactorLocation >= 0) {
-                    glUniform1f(roughnessFactorLocation, float(pbrMetallicRoughness.roughnessFactor));
-                }
-        }else{
+            }
+        } else {
+
             if (baseColorLocation >= 0) {
                 glActiveTexture(GL_TEXTURE0);
-                glBindTexture(GL_TEXTURE_2D, whiteTexture);
+                glBindTexture(GL_TEXTURE_2D, tex);
                 glUniform1i(baseColorLocation, 0);
             }
 
@@ -189,6 +183,7 @@ int ViewerApplication::run() {
             if (roughnessFactorLocation >= 0) {
                 glUniform1f(roughnessFactorLocation, 1.f);
             }
+
         }
     };
 
@@ -471,7 +466,7 @@ ViewerApplication::createVertexArrayObjects(const tinygltf::Model &model, const 
             auto primitive = mesh.primitives[primitiveIdx];
             glBindVertexArray(vertexArrayObjects[vaoRange.begin + primitiveIdx]);
             /* _____________________________________________________________________________ */
-            for (int i = 0; i < primitive.attributes.size() - 1; i++) {
+            for (int i = 0; i < ATTRIB_NAMES.size(); i++) {
                 // I'm opening a scope because I want to reuse the variable iterator in the code for NORMAL and TEXCOORD_0
                 const auto iterator = primitive.attributes.find(ATTRIB_NAMES[i]);
                 if (iterator != end(primitive.attributes)) { // If "ATTRIB_NAMES[i]" has been found in the map
@@ -482,7 +477,6 @@ ViewerApplication::createVertexArrayObjects(const tinygltf::Model &model, const 
                     const auto bufferIdx = bufferView.buffer;
 
                     const auto bufferObject = model.buffers[bufferIdx];
-
                     glEnableVertexAttribArray(VERTEX_ATTRIBS.at(ATTRIB_NAMES[i]));
                     glBindBuffer(GL_ARRAY_BUFFER, bufferObjects[bufferIdx]);
                     const auto byteOffset = accessor.byteOffset + bufferView.byteOffset;
@@ -510,7 +504,7 @@ ViewerApplication::createVertexArrayObjects(const tinygltf::Model &model, const 
 }
 
 std::vector<GLuint> ViewerApplication::createTextureObjects(const tinygltf::Model &model) const{
-    std::vector<GLuint> textures(model.textures.size(),0);
+    std::vector<GLuint> textures(model.textures.size());
 
     tinygltf::Sampler defaultSampler;
     defaultSampler.minFilter = GL_LINEAR;
@@ -522,7 +516,7 @@ std::vector<GLuint> ViewerApplication::createTextureObjects(const tinygltf::Mode
     glActiveTexture(GL_TEXTURE0);
     glGenTextures(GLsizei(model.textures.size()), textures.data());
 
-    for(size_t i = 0; i < model.textures.size(); i++){
+    for(int i = 0; i < model.textures.size(); i++){
         const auto &texture = model.textures[i];
         const auto &image = model.images[texture.source];
         const auto &sampler = (texture.sampler >= 0 ) ? model.samplers[texture.sampler] : defaultSampler;
@@ -554,5 +548,4 @@ std::vector<GLuint> ViewerApplication::createTextureObjects(const tinygltf::Mode
     return textures;
 
 }
-
 

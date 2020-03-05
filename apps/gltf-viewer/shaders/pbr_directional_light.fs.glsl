@@ -58,7 +58,7 @@ void main()
 
     vec4 metallicRougnessFromTexture = texture(uMetallicRoughnessTexture, vTexCoords);
     float roughness = uRoughnessFactor * metallicRougnessFromTexture.g; //roughness green
-    vec3 metallic = vec3(uMetallicFactor * metallicRougnessFromTexture.b); // metalic
+    vec3 metallic = vec3(uMetallicFactor * metallicRougnessFromTexture.b); // metalic blue.
 
 
     vec3 c_diff = mix(baseColor.rgb * (1. - dieletricSpecular.r), black, metallic);
@@ -74,7 +74,7 @@ void main()
 
     vec3 diffuse = c_diff * M_1_PI;
 
-    float Vis;
+    float Vis = 0;
     float alpha2 = alpha * alpha;
     float dVis = ((NdotL)   *    sqrt((NdotV) * (NdotV) * (1. - alpha2) + alpha2)   +    (NdotV)    *    sqrt((NdotL * NdotL) *  (1. - alpha2) + alpha2));
     if(dVis > 0.){
@@ -105,4 +105,5 @@ void main()
 
     //fColor = LINEARtoSRGB(diffuse * uLightIntensity * NdotL);
     fColor = LINEARtoSRGB((f_diffuse + f_specular) * uLightIntensity * NdotL);
+    //fColor = LINEARtoSRGB(texture(uBaseColorTexture, vTexCoords).xyz);
 }
